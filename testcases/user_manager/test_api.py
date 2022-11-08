@@ -6,34 +6,36 @@ import random
 import re
 import allure
 import pytest
+import requests
+
 from commons.requests_util import RequestUtil
-from commons.yaml_util import write_yaml, read_yaml
+from commons.yaml_util import write_yaml, read_yaml, read_case_yaml
 
 
 @allure.epic("微信接口项目")
 class TestApi:
-    csrf_token = ""
+    case_data = read_case_yaml("testcases/user_manager/get_token.yaml")
 
     @allure.severity(allure.severity_level.BLOCKER)
     @pytest.mark.run(order=1)
     @allure.description("这是一个获取token的用例")
     @allure.title("这里会被动态标题替换掉")
-    def test_get_token(self, base_url):
-        urls = base_url + "/cgi-bin/token"
-        datas = {
-            "grant_type": "client_credential",
-            "appid": "wxf393fadf3268a5d5",
-            "secret": "e9a29dfa3920020ebee3675bcc9c2cf8"
-        }
-
-        res = RequestUtil().send_all_request(method="get", url=urls, params=datas)
-        # res = requests.get(url=urls, params=datas)
+    @pytest.mark.parametrize("caseinfo", case_data)
+    def test_get_token(self, caseinfo):
+        name = caseinfo['name']
+        method = caseinfo['request']['method']
+        url = caseinfo['request']['url']
+        header = caseinfo['request']['headers']
+        params = caseinfo['request']['params']
+        validate = caseinfo['validate']
+        res = RequestUtil().send_all_request(method="get", url=url, params=params)
         result = res.json()
         data_token = {"ACCESS_TOKEN": result["access_token"]}
         write_yaml("extract.yaml", data_token)
-        # print(result, type(result))
         assert result['expires_in'] == 7200
         allure.dynamic.title("获取token测试用例")
+
+    #
 
     @allure.title("选择标签测试用例")
     @pytest.mark.run(order=2)
