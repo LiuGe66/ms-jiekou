@@ -3,15 +3,16 @@
 # @FileName: test_api.py
 # @Time : 2022/11/5 15:05
 import random
+import re
 import allure
 import pytest
-import yaml
 from commons.requests_util import RequestUtil
 from commons.yaml_util import write_yaml, read_yaml
 
 
 @allure.epic("微信接口项目")
 class TestApi:
+    csrf_token = ""
 
     @allure.severity(allure.severity_level.BLOCKER)
     @pytest.mark.run(order=1)
@@ -24,6 +25,7 @@ class TestApi:
             "appid": "wxf393fadf3268a5d5",
             "secret": "e9a29dfa3920020ebee3675bcc9c2cf8"
         }
+
         res = RequestUtil().send_all_request(method="get", url=urls, params=datas)
         # res = requests.get(url=urls, params=datas)
         result = res.json()
@@ -89,4 +91,31 @@ class TestApi:
         result = res.json()
         print(result, type(result))
 
-        # print("删除标签测试用例--断言通过")
+    @allure.title("访问论坛首页")
+    @pytest.mark.run(order=6)
+    def test_index(self):
+        urls = "http://47.107.116.139/phpwind/"
+        res = RequestUtil().send_all_request(method="get", url=urls)
+        result = res.text
+        data_token = {"csrf_token": re.search('name="csrf_token" value="(.*?)"', result).group(1)}
+        write_yaml("extract.yaml", data_token)
+        # TestApi.csrf_token = re.search('name="csrf_token" value="(.*?)"', result).group(1)
+
+    @allure.title("登录论坛")
+    @pytest.mark.run(order=7)
+    def test_login(self):
+        urls = "http://47.107.116.139/phpwind/index.php?m=u&c=login&a=dorun"
+        header = {
+            "Accept": "application/json, text/javascript, /; q=0.01",
+            "X-Requested-With": "XMLHttpRequest"
+        }
+        datas = {
+            "username": "liuge",
+            "password": "2066Sixy",
+            "csrf_token": read_yaml("extract.yaml", "csrf_token"),
+            "backurl": "http://47.107.116.139/phpwind/",
+            "invite": ""
+        }
+        res = RequestUtil().send_all_request(method="post", url=urls, headers=header, data=datas)
+        result = res.text
+        assert 'success' in result

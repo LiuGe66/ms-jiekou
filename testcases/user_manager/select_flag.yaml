@@ -1,0 +1,11 @@
+-
+  name: 选择标签
+  request:
+    method: get
+    url: https://api.weixin.qq.com//cgi-bin/token
+    headers: null
+    params:
+      grant_type: client_credential
+      appid: wxf393fadf3268a5d5
+      secret: e9a29dfa3920020ebee3675bcc9c2cf8
+  vaildate: null
