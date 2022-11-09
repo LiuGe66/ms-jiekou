@@ -1,0 +1,9 @@
+- name: 论坛首页
+  request:
+    method: get
+    url: http://47.107.116.139/phpwind/
+    headers: null
+    params: null
+  validate: null
+
+
