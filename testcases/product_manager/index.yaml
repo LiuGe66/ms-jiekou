@@ -5,5 +5,7 @@
     headers: null
     params: null
   validate: null
+  extract:
+    csrf_token: 'name="csrf_token" value="(.*?)"'
 
 
