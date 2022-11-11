@@ -66,5 +66,5 @@ def contains_assert(value, actual_result):
 # 数据库断言：
 def database_assert(value, actual_result):
     flag = 0
-    print(value, actual_result)
+    print("------------------------------------------------",value, actual_result)
     return flag

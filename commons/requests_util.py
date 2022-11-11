@@ -6,7 +6,6 @@ import json
 import re
 import jsonpath
 import requests
-
 from commons.assert_utils import assert_result
 from commons.yaml_util import write_yaml, read_yaml
 from hotloads.debug_talk import DebugTalk

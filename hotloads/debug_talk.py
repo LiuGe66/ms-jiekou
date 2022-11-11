@@ -4,13 +4,12 @@
 # @Time : 2022/11/11 0:12
 import os
 import random
-
 import yaml
 
 
 class DebugTalk:
-    def get_random(self, min, max):
-        return random.randint(int(min), int(max))
+    def get_random(self, min_num, max_num):
+        return random.randint(int(min_num), int(max_num))
 
     def read_extract(self, key):
         with open(os.getcwd() + "/" + "/extract.yaml", mode="r", encoding="utf-8") as f:
@@ -18,5 +17,4 @@ class DebugTalk:
             return result[key]
 
 
-if __name__ == '__main__':
-    print(DebugTalk().get_random(1, 10000))
+
