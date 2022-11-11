@@ -48,7 +48,7 @@ class RequestUtil:
                                 data = {key: reg_value.group(1)}
                                 write_yaml("extract.yaml", data)
                             else:
-                                print('正则表达式可能有误，未提取到中间变量')
+                                print('正则表达式可能有误，或者未提取到中间变量')
                         else:
                             js_value = jsonpath.jsonpath(js_result, value)
                             if js_value:
