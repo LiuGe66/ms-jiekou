@@ -2,5 +2,7 @@
   name: 选择标签
   request:
     method: get
-    url: https://api.weixin.qq.com/cgi-bin/tags/get?access_token=${access_token}
-  validate: null
+    url: https://api.weixin.qq.com/cgi-bin/tags/get?access_token=${read_extract(access_token)}
+  validate:
+    - contains: tags
+    - codes: { status_code: 200 }
