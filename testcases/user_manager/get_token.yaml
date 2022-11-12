@@ -2,7 +2,8 @@
   name: $ddt{name}
   request:
     method: get
-    url: https://api.weixin.qq.com/cgi-bin/token
+    base_url: ${read_config(base_url)}
+    url: /cgi-bin/token
     headers: null
     params:
       grant_type: $ddt{grant_type}
@@ -14,8 +15,8 @@
   parameterize:
     - ['name', 'appid', 'secret', 'grant_type', 'assert_str']
     - ['获取鉴权码-成功','wxf393fadf3268a5d5','e9a29dfa3920020ebee3675bcc9c2cf8','client_credential','access_token']
-    - ['获取鉴权码-appid为空','','e9a29dfa3920020ebee3675bcc9c2cf8','client_credential',41002]
-    - ['获取鉴权码-secret为空','wxf393fadf3268a5d5','','client_credential',41004]
+#    - ['获取鉴权码-appid为空','','e9a29dfa3920020ebee3675bcc9c2cf8','client_credential',41002]
+#    - ['获取鉴权码-secret为空','wxf393fadf3268a5d5','','client_credential',41004]
   validate:
 #    - equals: {expires_in: 7200}
     - contains: $ddt{assert_str}

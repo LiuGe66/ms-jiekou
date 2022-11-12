@@ -44,8 +44,8 @@ class TestApi:
     # def test_del_flag(self,caseinfo):
     #     RequestUtil(DebugTalk).standard_yaml_testcase(caseinfo)
     #
-    # @allure.title("文件上传测试用例")
-    # @pytest.mark.run(order=5)
-    # @pytest.mark.parametrize("caseinfo", read_case_yaml("testcases/user_manager/files_upload.yaml"))
-    # def test_file_upload(self,caseinfo):
-    #     RequestUtil(DebugTalk).standard_yaml_testcase(caseinfo)
+    @allure.title("文件上传测试用例")
+    @pytest.mark.run(order=5)
+    @pytest.mark.parametrize("caseinfo", read_case_yaml("testcases/user_manager/files_upload.yaml"))
+    def test_file_upload(self,caseinfo):
+        RequestUtil(DebugTalk).standard_yaml_testcase(caseinfo)

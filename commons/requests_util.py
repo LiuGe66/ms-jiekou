@@ -18,18 +18,18 @@ class RequestUtil:
         self.obj = obj
 
     # 统一请求的方法
-
     def standard_yaml_testcase(self, caseinfo):
         caseinfo_keys = caseinfo.keys()
         # 在Yaml用例里必须有一级关键字name,request,validate
         if "name" in caseinfo_keys and "request" in caseinfo_keys and "validate" in caseinfo_keys:
             request_keys = caseinfo['request'].keys()
-            if 'method' in request_keys and "url" in request_keys:
+            if 'method' in request_keys and "url" in request_keys and "base_url" in request_keys:
                 # 发送请求
+                base_url = caseinfo['request'].pop('base_url')
                 method = caseinfo['request'].pop('method')
                 url = caseinfo['request'].pop('url')
                 print(caseinfo)
-                res = self.send_all_request(method, url, **caseinfo['request'])
+                res = self.send_all_request(method, url, base_url, **caseinfo['request'])
                 text_result = res.text  # 接收txt响应结果
                 status_code = res.status_code
                 js_result = ''
@@ -48,14 +48,14 @@ class RequestUtil:
                                 data = {key: reg_value.group(1)}
                                 write_yaml("extract.yaml", data)
                             else:
-                                print('正则表达式可能有误，或者接口请求失败，未提取到中间变量')
+                                print('正则表达式可能有误，或者(反例)接口请求失败，未提取到中间变量')
                         else:
                             js_value = jsonpath.jsonpath(js_result, value)
                             if js_value:
                                 data = {key: js_value[0]}
                                 write_yaml("extract.yaml", data)
                             else:
-                                print('jsonpath表达式可能有误，或者接口请求失败，未提取到中间变量')
+                                print('jsonpath表达式可能有误，或者(反例)接口请求失败，未提取到中间变量')
                 # 断言：
                 expect_result = caseinfo["validate"]
                 actual_result = js_result
@@ -70,11 +70,11 @@ class RequestUtil:
         else:
             print("在Yaml用例里必须有一级关键字name,request,validate。")
 
-    def send_all_request(self, method, url, **kwargs):
+    def send_all_request(self, method, url, base_url, **kwargs):
         # method统一小写
         method = str(method).lower()
         # url通过${key}取值
-        url = self.replace_get_value(url)
+        url = self.replace_get_value(base_url+url)
         # headers,params,data,json通过${key}取值
         for key, value in kwargs.items():
             if key in ["headers", "params", "data", "json"]:
@@ -82,10 +82,8 @@ class RequestUtil:
             elif key == "files":
                 for file_key, file_value in value.items():
                     value[file_key] = open(file_value, "rb")
-                    print(value)
         # 发送请求：
         res = RequestUtil.sess.request(method, url, **kwargs)
-        print("request_utils88行==================================================",res.text)
         return res
 
     # 封装替换取值的方法
@@ -106,11 +104,11 @@ class RequestUtil:
                     start_index = str_data.index("${")
                     end_index = str_data.index("}", start_index)
                     old_value = str_data[start_index:end_index + 1]
-                    print(old_value)
+                    # print(old_value)
                     # 反射：通过类的对象和方法名字符串调用方法
                     # 得到方法名
                     function_name = old_value[2:old_value.index("(")]
-                    print(function_name)
+                    # print(function_name)
                     # 得到参数
                     args_value = old_value[old_value.index("(") + 1:old_value.index(")")]
                     print("args_value:{}".format(args_value))
@@ -118,11 +116,11 @@ class RequestUtil:
                         # 有参数，分割参数
                         all_args_value = args_value.split(",")
                         new_value = getattr(DebugTalk(), function_name)(*all_args_value)
-                        print(new_value)
+                        # print(new_value)
                     else:
                         # 没有参数
                         new_value = getattr(DebugTalk(), function_name)()
-                        print(new_value)
+                        # print(new_value)
                     # 把旧的表达式替换成新的值
                     str_data = str_data.replace(old_value, str(new_value))
             # 还原数据类型

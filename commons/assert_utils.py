@@ -7,6 +7,7 @@ import jsonpath
 
 def assert_result(expect_result, actual_result, status_code):
     all_flag = 0
+    print(expect_result)
     for expect in expect_result:
         for key, value in expect.items():
             if key == "codes":

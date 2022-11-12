@@ -2,7 +2,8 @@
   name: 编辑标签
   request:
     method: post
-    url: https://api.weixin.qq.com/cgi-bin/tags/update
+    base_url: ${read_config(base_url)}
+    url: /cgi-bin/tags/update
     headers: null
     params:
       access_token: ${read_extract(access_token)}

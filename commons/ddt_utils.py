@@ -12,14 +12,12 @@ from commons.yaml_util import get_object_path
 def read_case_yaml(yaml_path):
     with open(get_object_path() + "/" + yaml_path, mode="r", encoding="utf-8") as f:
         caseinfo = yaml.load(stream=f, Loader=yaml.FullLoader)
-        print("6666666666666666666666666666666666666666666666",len(caseinfo))
         if len(caseinfo) >= 2:  # 表示通过复制内容实现数据驱动
             return caseinfo
         else:
             if "parameterize" in dict(*caseinfo).keys():
                 # 代表需要做解析
                 new_caseinfo = parameterize_ddt(*caseinfo)
-                pass
                 return new_caseinfo
             else:
                 return caseinfo
@@ -42,13 +40,9 @@ def parameterize_ddt(caseinfo):
     new_caseinfo = []
     if length_success:
         for x in range(1, len(data_list)):
-            # print("x=======%s" % x)
-            print(caseinfo_str)
             raw_caseinfo = caseinfo_str
             for y in range(0, len(data_list[x])):
-                # print("y=======%s" % y, data_list[x][y])
                 raw_caseinfo = raw_caseinfo.replace("$ddt{" + data_list[0][y] + "}", str(data_list[x][y]))
             new_caseinfo.append(json.loads(raw_caseinfo))
-        print("999999999999999999", new_caseinfo)
 
     return new_caseinfo
