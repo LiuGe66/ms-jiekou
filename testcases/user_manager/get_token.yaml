@@ -13,13 +13,14 @@
     expires_in: $..expires_in
   parameterize:
     - ['name', 'appid', 'secret', 'grant_type', 'assert_str']
-    - ['成功获取token鉴权码','wxf393fadf3268a5d5','e9a29dfa3920020ebee3675bcc9c2cf8','client_credential','access_token']
-    - ['appid为空','','e9a29dfa3920020ebee3675bcc9c2cf8','client_credential','41002']
-    - ['secret为空','wxf393fadf3268a5d5','','client_credential','41001']
+    - ['获取鉴权码-成功','wxf393fadf3268a5d5','e9a29dfa3920020ebee3675bcc9c2cf8','client_credential','access_token']
+    - ['获取鉴权码-appid为空','','e9a29dfa3920020ebee3675bcc9c2cf8','client_credential',41002]
+    - ['获取鉴权码-secret为空','wxf393fadf3268a5d5','','client_credential',41004]
   validate:
 #    - equals: {expires_in: 7200}
-#    - contains: access_token
+    - contains: $ddt{assert_str}
     - codes: {status_code: 200}
+
 
 
 

@@ -48,14 +48,14 @@ class RequestUtil:
                                 data = {key: reg_value.group(1)}
                                 write_yaml("extract.yaml", data)
                             else:
-                                print('正则表达式可能有误，或者未提取到中间变量')
+                                print('正则表达式可能有误，或者接口请求失败，未提取到中间变量')
                         else:
                             js_value = jsonpath.jsonpath(js_result, value)
                             if js_value:
                                 data = {key: js_value[0]}
                                 write_yaml("extract.yaml", data)
                             else:
-                                print('jsonpath表达式可能有误，未提取到中间变量')
+                                print('jsonpath表达式可能有误，或者接口请求失败，未提取到中间变量')
                 # 断言：
                 expect_result = caseinfo["validate"]
                 actual_result = js_result
@@ -85,6 +85,7 @@ class RequestUtil:
                     print(value)
         # 发送请求：
         res = RequestUtil.sess.request(method, url, **kwargs)
+        print("request_utils88行==================================================",res.text)
         return res
 
     # 封装替换取值的方法
@@ -131,5 +132,5 @@ class RequestUtil:
                 data = data_type(str_data)
             return data  # 返回值
         else:
-            print('None不需要通过${变量名}取值')
+            print('有数据未填充，或者反例设计数据为空')
             return data  # 返回值

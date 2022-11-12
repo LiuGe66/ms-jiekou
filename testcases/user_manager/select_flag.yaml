@@ -1,8 +1,17 @@
 -
-  name: 选择标签
+  name: 选择标签正常
   request:
     method: get
     url: https://api.weixin.qq.com/cgi-bin/tags/get?access_token=${read_extract(access_token)}
   validate:
     - contains: tags
     - codes: { status_code: 200 }
+
+-
+  name: 选择标签-无token
+  request:
+    method: get
+    url: https://api.weixin.qq.com/cgi-bin/tags/get
+  validate:
+    - codes: { status_code: 200 }
+    - contains: 41001

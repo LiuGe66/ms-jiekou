@@ -12,6 +12,7 @@ from commons.yaml_util import get_object_path
 def read_case_yaml(yaml_path):
     with open(get_object_path() + "/" + yaml_path, mode="r", encoding="utf-8") as f:
         caseinfo = yaml.load(stream=f, Loader=yaml.FullLoader)
+        print("6666666666666666666666666666666666666666666666",len(caseinfo))
         if len(caseinfo) >= 2:  # 表示通过复制内容实现数据驱动
             return caseinfo
         else:
