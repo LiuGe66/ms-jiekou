@@ -4,7 +4,6 @@
     method: post
     base_url: ${read_config(base_url)}
     url: /cgi-bin/tags/delete
-    headers: null
     params:
       access_token: ${read_extract(access_token)}
     json: {"tag": {"id": 134}}

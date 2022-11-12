@@ -5,6 +5,8 @@
 import json
 
 import yaml
+
+from commons.logger_utils import print_log
 from commons.yaml_util import get_object_path
 
 
@@ -34,8 +36,8 @@ def parameterize_ddt(caseinfo):
     for param in caseinfo["parameterize"]:
         if len(param) != key_length:
             length_success = False
-            print("name为：'{}'的这条数据有误，请检查。".format(param[0]))
-            print('数据规范发现异常：key与value的数量不对应')
+            print_log("name为：'{}'的这条数据有误，请检查。".format(param[0]))
+            print_log('数据规范发现异常：key与value的数量不对应')
             continue
     new_caseinfo = []
     if length_success:

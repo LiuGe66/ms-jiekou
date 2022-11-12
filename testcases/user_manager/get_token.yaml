@@ -4,7 +4,6 @@
     method: get
     base_url: ${read_config(base_url)}
     url: /cgi-bin/token
-    headers: null
     params:
       grant_type: $ddt{grant_type}
       appid: $ddt{appid}

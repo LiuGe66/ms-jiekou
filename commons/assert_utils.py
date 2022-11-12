@@ -4,26 +4,28 @@
 # @Time : 2022/11/11 14:06
 import jsonpath
 
+from commons.logger_utils import print_log
+
 
 def assert_result(expect_result, actual_result, status_code):
     all_flag = 0
-    print(expect_result)
+    # print(expect_result)
     for expect in expect_result:
         for key, value in expect.items():
             if key == "codes":
-                print("状态码断言")
+                print_log("状态码断言")
                 flag = codes_assert(value, status_code)
                 all_flag = all_flag + flag
             elif key == "equals":
-                print("相等断言")
+                print_log("相等断言")
                 flag = equals_assert(value, actual_result)
                 all_flag = all_flag + flag
             elif key == "contains":
-                print("包含断言")
+                print_log("包含断言")
                 flag = contains_assert(value, actual_result)
                 all_flag = all_flag + flag
             else:
-                print("此框架不支持{}断言方式".format(key))
+                print_log("此框架不支持{}断言方式".format(key))
     return all_flag
 
 
@@ -34,24 +36,22 @@ def codes_assert(value, status_code):
         if assert_key == "status_code":
             if assert_value != status_code:
                 flag = flag + 1
-                print("codes断言失败：" + str(assert_key) + "不等于" + str(assert_value) + "")
+                print_log("codes断言失败：" + str(assert_key) + "不等于" + str(assert_value) + "")
     return flag
 
 
 def equals_assert(value, actual_result):
     flag = 0
     for assert_key, assert_value in value.items():
-        print("assert_key:%s" % assert_key)
-        print("assert_value:%s" % assert_value)
         lists = jsonpath.jsonpath(actual_result, '$..%s' % assert_key)
-        print(lists)
+        # print(lists)
         if lists:
             if assert_value not in lists:
                 flag = flag + 1
-                print("equals断言失败：" + str(assert_key) + "不等于" + str(assert_value) + "")
+                print_log("equals断言失败：" + str(assert_key) + "不等于" + str(assert_value) + "")
         else:
             flag = flag + 1
-            print("equals断言失败：返回的结果中没有" + str(assert_key) + "")
+            print_log("equals断言失败：返回的结果中没有" + str(assert_key) + "")
     return flag
 
 
@@ -60,7 +60,7 @@ def contains_assert(value, actual_result):
     flag = 0
     if str(value) not in str(actual_result):
         flag = flag + 1
-        print("contains断言失败：返回的结果中没有" + str(value) + "")
+        print_log("contains断言失败：返回的结果中没有" + str(value) + "")
     return flag
 
 

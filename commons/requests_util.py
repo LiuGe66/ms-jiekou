@@ -7,6 +7,7 @@ import re
 import jsonpath
 import requests
 from commons.assert_utils import assert_result
+from commons.logger_utils import print_log
 from commons.yaml_util import write_yaml, read_yaml
 from hotloads.debug_talk import DebugTalk
 
@@ -28,7 +29,6 @@ class RequestUtil:
                 base_url = caseinfo['request'].pop('base_url')
                 method = caseinfo['request'].pop('method')
                 url = caseinfo['request'].pop('url')
-                print(caseinfo)
                 res = self.send_all_request(method, url, base_url, **caseinfo['request'])
                 text_result = res.text  # 接收txt响应结果
                 status_code = res.status_code
@@ -36,9 +36,7 @@ class RequestUtil:
                 try:
                     js_result = res.json()  # 接收json响应结果
                 except():
-                    print('响应不是json数据格式')
-
-                print(res.text)
+                    print_log('响应不是json数据格式')
                 # 提取需要关联的值，并写入extract.yaml
                 if 'extract' in caseinfo.keys():
                     for key, value in caseinfo['extract'].items():
@@ -48,27 +46,27 @@ class RequestUtil:
                                 data = {key: reg_value.group(1)}
                                 write_yaml("extract.yaml", data)
                             else:
-                                print('正则表达式可能有误，或者(反例)接口请求失败，未提取到中间变量')
+                                print_log('正则表达式{}可能有误，或者(反例)接口请求失败，未提取到中间变量'.format(value))
                         else:
                             js_value = jsonpath.jsonpath(js_result, value)
                             if js_value:
                                 data = {key: js_value[0]}
                                 write_yaml("extract.yaml", data)
                             else:
-                                print('jsonpath表达式可能有误，或者(反例)接口请求失败，未提取到中间变量')
+                                print_log(f'jsonpath表达式{value}可能有误，或者(反例)接口请求失败，未提取到中间变量')
                 # 断言：
                 expect_result = caseinfo["validate"]
                 actual_result = js_result
                 all_flag = assert_result(expect_result, actual_result, status_code)
                 if all_flag == 0:
-                    print("{}业务断言成功".format(caseinfo["name"]))
+                    print_log("{}业务断言成功".format(caseinfo["name"]))
                 else:
-                    assert 1 == 2, print("{}业务断言失败".format(caseinfo["name"]))
+                    assert 1 == 2, print_log("{}业务断言失败".format(caseinfo["name"]))
 
             else:
-                print("request下面必须包含method,url这两个关键字。")
+                print_log("request下面必须包含method,base_url,url这两个关键字。")
         else:
-            print("在Yaml用例里必须有一级关键字name,request,validate。")
+            print_log("在Yaml用例里必须有一级关键字name,request,validate。")
 
     def send_all_request(self, method, url, base_url, **kwargs):
         # method统一小写
@@ -77,11 +75,14 @@ class RequestUtil:
         url = self.replace_get_value(base_url+url)
         # headers,params,data,json通过${key}取值
         for key, value in kwargs.items():
-            if key in ["headers", "params", "data", "json"]:
-                kwargs[key] = self.replace_get_value(value)
-            elif key == "files":
-                for file_key, file_value in value.items():
-                    value[file_key] = open(file_value, "rb")
+            if value is None:
+                print_log(f'{key}未填充，或者(反例)设计为空')
+            else:
+                if key in ["headers", "params", "data", "json"]:
+                    kwargs[key] = self.replace_get_value(value)
+                elif key == "files":
+                    for file_key, file_value in value.items():
+                        value[file_key] = open(file_value, "rb")
         # 发送请求：
         res = RequestUtil.sess.request(method, url, **kwargs)
         return res
@@ -111,7 +112,7 @@ class RequestUtil:
                     # print(function_name)
                     # 得到参数
                     args_value = old_value[old_value.index("(") + 1:old_value.index(")")]
-                    print("args_value:{}".format(args_value))
+                    # print("args_value:{}".format(args_value))
                     if args_value != "":
                         # 有参数，分割参数
                         all_args_value = args_value.split(",")
@@ -129,6 +130,7 @@ class RequestUtil:
             else:
                 data = data_type(str_data)
             return data  # 返回值
-        else:
-            print('有数据未填充，或者反例设计数据为空')
-            return data  # 返回值
+        #
+        # else:
+        #     print_log('request-line135-000000000000000000000000000000000000000未填充，或者反例设计数据为空')
+        #     return data  # 返回值
