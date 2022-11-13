@@ -11,5 +11,5 @@ from commons.yaml_util import read_yaml
 
 if __name__ == '__main__':
     pytest.main()
-    # sleep(3)
-    # os.system("allure generate ./temps -o ./reports --clean reports")
+    sleep(3)
+    os.system("allure generate ./temps -o ./reports --clean reports")

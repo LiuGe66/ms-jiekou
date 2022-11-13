@@ -13,10 +13,12 @@ import yaml
 # 错误日志
 def error_log(message):
     LoggerUtils().create_log().error(message)
+    raise AssertionError(message)
 
 
 def print_log(message):
     LoggerUtils().create_log().info(message)
+    # raise Exception(message)
 
 
 class LoggerUtils:
@@ -83,8 +85,3 @@ class LoggerUtils:
             self.logger.addHandler(console_handler)
 
         return self.logger
-
-
-if __name__ == '__main__':
-    error_log("报错了")
-    print_log("不行了")
