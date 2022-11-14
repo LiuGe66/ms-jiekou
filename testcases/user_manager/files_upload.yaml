@@ -1,14 +1,19 @@
 -
-  name: 文件上传
+  name: $ddt{name}
   request:
-    method: post
+    method: $ddt{method}
     base_url: ${read_config(base_url)}
-    url: /cgi-bin/media/uploadimg
+    url: $ddt{url}
     headers: null
     params:
       access_token: ${read_extract(access_token)}
     json: null
     files:
-      media: "D:\\pig.jpg"
+      media: $ddt{media}
   validate:
-    - contains: "url"
+    - contains: $ddt{contains}
+  parameterize:
+    - [ 'name', 'media', 'url', 'method', 'contains' ]
+    - [ '文件上传-正例 ','D:\\pig.jpg','/cgi-bin/media/uploadimg','post','url' ]
+#    - [ '文件上传-1.5M图片 ','D:\\美女.jpg','/cgi-bin/media/uploadimg','post','url' ]
+    - [ '文件上传-请求方式错误 ','D:\\pig.jpg','/cgi-bin/media/uploadimg','get','43002' ]

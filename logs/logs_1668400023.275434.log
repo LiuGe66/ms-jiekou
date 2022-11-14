@@ -1,0 +1,11 @@
+[2022-11-14 12:27:03,278] logger_utils.py->print_log line:20 [INFO]----------------获取鉴权码-正例接口测试开始----------------
+[2022-11-14 12:27:03,279] logger_utils.py->print_log line:20 [INFO]请求方式：get
+[2022-11-14 12:27:03,280] logger_utils.py->print_log line:20 [INFO]请求地址：https://api.weixin.qq.com/cgi-bin/token
+[2022-11-14 12:27:03,280] logger_utils.py->print_log line:20 [INFO]请求params参数：{'grant_type': 'client_credential', 'appid': 'wxf393fadf3268a5d5', 'secret': 'e9a29dfa3920020ebee3675bcc9c2cf8'}
+[2022-11-14 12:27:03,622] logger_utils.py->print_log line:20 [INFO]None
+[2022-11-14 12:27:03,623] logger_utils.py->error_log line:15 [ERROR]requests_utils模块standard_yaml_testcase方法报错：Traceback (most recent call last):
+  File "D:\Python_project\ms-jiekou\commons\requests_util.py", line 53, in standard_yaml_testcase
+    for key, value in caseinfo['extract'].items():
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'items'
+

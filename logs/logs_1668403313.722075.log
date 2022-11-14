@@ -1,0 +1,56 @@
+[2022-11-14 13:21:53,724] logger_utils.py->error_log line:15 [ERROR]dtt_utils模块parameterize_ddt方法报错：Traceback (most recent call last):
+  File "D:\Python_project\ms-jiekou\commons\ddt_utils.py", line 54, in parameterize_ddt
+    new_caseinfo.append(json.loads(raw_caseinfo))
+                        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sixyco\AppData\Local\Programs\Python\Python311\Lib\json\__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sixyco\AppData\Local\Programs\Python\Python311\Lib\json\decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sixyco\AppData\Local\Programs\Python\Python311\Lib\json\decoder.py", line 353, in raw_decode
+    obj, end = self.scan_once(s, idx)
+               ^^^^^^^^^^^^^^^^^^^^^^
+json.decoder.JSONDecodeError: Expecting ',' delimiter: line 1 column 239 (char 238)
+
+[2022-11-14 13:21:53,726] logger_utils.py->error_log line:15 [ERROR]dtt_utils模块read_case_yaml方法报错：Traceback (most recent call last):
+  File "D:\Python_project\ms-jiekou\commons\ddt_utils.py", line 54, in parameterize_ddt
+    new_caseinfo.append(json.loads(raw_caseinfo))
+                        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sixyco\AppData\Local\Programs\Python\Python311\Lib\json\__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sixyco\AppData\Local\Programs\Python\Python311\Lib\json\decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sixyco\AppData\Local\Programs\Python\Python311\Lib\json\decoder.py", line 353, in raw_decode
+    obj, end = self.scan_once(s, idx)
+               ^^^^^^^^^^^^^^^^^^^^^^
+json.decoder.JSONDecodeError: Expecting ',' delimiter: line 1 column 239 (char 238)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Python_project\ms-jiekou\commons\ddt_utils.py", line 22, in read_case_yaml
+    new_caseinfo = parameterize_ddt(*caseinfo)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_project\ms-jiekou\commons\ddt_utils.py", line 57, in parameterize_ddt
+    error_log("dtt_utils模块parameterize_ddt方法报错：%s" % str(traceback.format_exc()))
+  File "D:\Python_project\ms-jiekou\commons\logger_utils.py", line 16, in error_log
+    raise AssertionError(message)
+AssertionError: dtt_utils模块parameterize_ddt方法报错：Traceback (most recent call last):
+  File "D:\Python_project\ms-jiekou\commons\ddt_utils.py", line 54, in parameterize_ddt
+    new_caseinfo.append(json.loads(raw_caseinfo))
+                        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sixyco\AppData\Local\Programs\Python\Python311\Lib\json\__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sixyco\AppData\Local\Programs\Python\Python311\Lib\json\decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sixyco\AppData\Local\Programs\Python\Python311\Lib\json\decoder.py", line 353, in raw_decode
+    obj, end = self.scan_once(s, idx)
+               ^^^^^^^^^^^^^^^^^^^^^^
+json.decoder.JSONDecodeError: Expecting ',' delimiter: line 1 column 239 (char 238)
+
+

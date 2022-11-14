@@ -6,7 +6,6 @@ import json
 import re
 import traceback
 from email import message
-
 import jsonpath
 import requests
 from commons.assert_utils import assert_result
@@ -28,9 +27,17 @@ class RequestUtil:
             # 在Yaml用例里必须有一级关键字name,request,validate
             if "name" in caseinfo_keys and "request" in caseinfo_keys and "validate" in caseinfo_keys:
                 print_log(f"----------------{caseinfo['name']}接口测试开始----------------")
-                # print_log("接口名称：{}".format(caseinfo['name']))
                 request_keys = caseinfo['request'].keys()
                 if 'method' in request_keys and "url" in request_keys and "base_url" in request_keys:
+                    for i, j in caseinfo['request'].items():
+                        if j is None:
+                            print_log(f"{i}没有value,请确认")
+                    if 'params' in caseinfo['request'].keys():
+                        for i, j in caseinfo['request']['params'].items():
+                            if j is None:
+                                print_log(f"{i}没有value,请确认")
+                    else:
+                        print_log("params参数不存在，请注意")
                     # 发送请求
                     base_url = caseinfo['request'].pop('base_url')
                     method = caseinfo['request'].pop('method')
@@ -44,7 +51,7 @@ class RequestUtil:
                     except():
                         print_log('响应不是json数据格式')
                     # 提取需要关联的值，并写入extract.yaml
-                    if 'extract' in caseinfo.keys():
+                    if 'extract' in caseinfo.keys() and caseinfo['extract'] is not None:
                         for key, value in caseinfo['extract'].items():
                             if '(.*?)' in value or "(.*+)" in value:  # 正则提取
                                 reg_value = re.search(value, text_result)
@@ -52,7 +59,8 @@ class RequestUtil:
                                     data = {key: reg_value.group(1)}
                                     write_yaml("extract.yaml", data)
                                 else:
-                                    print_log('正则表达式{}可能有误，或者(反例)接口请求失败，未提取到中间变量'.format(value))
+                                    print_log(
+                                        '正则表达式{}可能有误，或者(反例)接口请求失败，未提取到中间变量'.format(value))
                             else:
                                 js_value = jsonpath.jsonpath(js_result, value)
                                 if js_value:
@@ -60,6 +68,8 @@ class RequestUtil:
                                     write_yaml("extract.yaml", data)
                                 else:
                                     print_log(f'jsonpath表达式{value}可能有误，或者(反例)接口请求失败，未提取到中间变量')
+                    elif 'extract' in caseinfo.keys() and caseinfo['extract'] is None:
+                        print_log("extract配置参数为空，请检查")
                     # 断言：
                     expect_result = caseinfo["validate"]
                     actual_result = js_result
@@ -83,7 +93,6 @@ class RequestUtil:
 
     def send_all_request(self, method, url, base_url, **kwargs):
         try:
-
             print_log('请求方式：{}'.format(method))
             # method统一小写
             method = str(method).lower()

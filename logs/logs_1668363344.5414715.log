@@ -1,0 +1,11 @@
+[2022-11-14 02:15:44,545] logger_utils.py->print_log line:20 [INFO]----------------获取鉴权码-正例接口测试开始----------------
+[2022-11-14 02:15:44,545] logger_utils.py->print_log line:20 [INFO]请求方式：None
+[2022-11-14 02:15:44,546] logger_utils.py->print_log line:20 [INFO]请求地址：https://api.weixin.qq.com/cgi-bin/token
+[2022-11-14 02:15:44,546] logger_utils.py->print_log line:20 [INFO]请求params参数：{'grant_type': 'client_credential', 'appid': 'wxf393fadf3268a5d5', 'secret': 'e9a29dfa3920020ebee3675bcc9c2cf8'}
+[2022-11-14 02:15:44,925] logger_utils.py->print_log line:20 [INFO]预期结果：[{'codes': {'status_code': 200}}, {'contains': 'access_token'}]
+[2022-11-14 02:15:44,926] logger_utils.py->print_log line:20 [INFO]实际结果：{'access_token': '62_MUcdYQ7V715-ytt1hGEJbbn212fifL2Libl_V38vrDiDJBns6D-WQdnEwpuulHymTTMd2lDv60pIFcyCYIEIaWt1xWM3i-CnoB78F-cyZ1YaGnOsNPy5xBETreoIIOeACACCI', 'expires_in': 7200},status_code:200
+[2022-11-14 02:15:44,926] logger_utils.py->print_log line:20 [INFO]状态码断言
+[2022-11-14 02:15:44,926] logger_utils.py->print_log line:20 [INFO]包含断言
+[2022-11-14 02:15:44,926] logger_utils.py->print_log line:20 [INFO]获取鉴权码-正例业务断言成功
+[2022-11-14 02:15:44,926] logger_utils.py->print_log line:20 [INFO]----------------获取鉴权码-正例接口测试结束----------------
+

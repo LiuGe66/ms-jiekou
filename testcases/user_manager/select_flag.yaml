@@ -1,5 +1,5 @@
 -
-  name: 选择标签-正常
+  name: 选择标签-正例
   request:
     method: get
     base_url: ${read_config(base_url)}

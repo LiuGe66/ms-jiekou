@@ -1,0 +1,146 @@
+[2022-11-14 13:02:10,840] logger_utils.py->print_log line:20 [INFO]----------------获取鉴权码-正例接口测试开始----------------
+[2022-11-14 13:02:10,841] logger_utils.py->print_log line:20 [INFO]请求方式：get
+[2022-11-14 13:02:10,843] logger_utils.py->print_log line:20 [INFO]请求地址：https://api.weixin.qq.com/cgi-bin/token
+[2022-11-14 13:02:10,843] logger_utils.py->print_log line:20 [INFO]请求params参数：{'grant_type': 'client_credential', 'appid': 'wxf393fadf3268a5d5', 'secret': 'e9a29dfa3920020ebee3675bcc9c2cf8'}
+[2022-11-14 13:02:11,236] logger_utils.py->print_log line:20 [INFO]extract配置参数为空，请检查
+[2022-11-14 13:02:11,236] logger_utils.py->print_log line:20 [INFO]预期结果：[{'codes': {'status_code': 200}}, {'contains': 'access_token'}]
+[2022-11-14 13:02:11,238] logger_utils.py->print_log line:20 [INFO]实际结果：{'access_token': '62_N00u7nsC0sUT8jxM3wv0kRScyuPhDtJP7BVnGk7uD-HUdd29iHCp7xzvXIG-6MLbeSAoOXcY7_TSC6RPKjHx3Yg4GYEF6SG13wsauc-KbxaJNJcFfBHf0eF5FqYIZGgACAOFM', 'expires_in': 7200},status_code:200
+[2022-11-14 13:02:11,238] logger_utils.py->print_log line:20 [INFO]状态码断言
+[2022-11-14 13:02:11,238] logger_utils.py->print_log line:20 [INFO]包含断言
+[2022-11-14 13:02:11,238] logger_utils.py->print_log line:20 [INFO]获取鉴权码-正例业务断言成功
+[2022-11-14 13:02:11,238] logger_utils.py->print_log line:20 [INFO]----------------获取鉴权码-正例接口测试结束----------------
+
+[2022-11-14 13:02:11,246] logger_utils.py->print_log line:20 [INFO]----------------获取鉴权码-appid为空接口测试开始----------------
+[2022-11-14 13:02:11,246] logger_utils.py->print_log line:20 [INFO]请求方式：get
+[2022-11-14 13:02:11,247] logger_utils.py->print_log line:20 [INFO]请求地址：https://api.weixin.qq.com/cgi-bin/token
+[2022-11-14 13:02:11,247] logger_utils.py->print_log line:20 [INFO]请求params参数：{'grant_type': 'client_credential', 'appid': '', 'secret': 'e9a29dfa3920020ebee3675bcc9c2cf8'}
+[2022-11-14 13:02:11,295] logger_utils.py->print_log line:20 [INFO]extract配置参数为空，请检查
+[2022-11-14 13:02:11,295] logger_utils.py->print_log line:20 [INFO]预期结果：[{'codes': {'status_code': 200}}, {'contains': '41002'}]
+[2022-11-14 13:02:11,295] logger_utils.py->print_log line:20 [INFO]实际结果：{'errcode': 41002, 'errmsg': 'appid missing rid: 6371cbd2-25f38107-4e4812b9'},status_code:200
+[2022-11-14 13:02:11,295] logger_utils.py->print_log line:20 [INFO]状态码断言
+[2022-11-14 13:02:11,295] logger_utils.py->print_log line:20 [INFO]包含断言
+[2022-11-14 13:02:11,296] logger_utils.py->print_log line:20 [INFO]获取鉴权码-appid为空业务断言成功
+[2022-11-14 13:02:11,296] logger_utils.py->print_log line:20 [INFO]----------------获取鉴权码-appid为空接口测试结束----------------
+
+[2022-11-14 13:02:11,304] logger_utils.py->print_log line:20 [INFO]----------------获取鉴权码-secret为空接口测试开始----------------
+[2022-11-14 13:02:11,304] logger_utils.py->print_log line:20 [INFO]请求方式：get
+[2022-11-14 13:02:11,305] logger_utils.py->print_log line:20 [INFO]请求地址：https://api.weixin.qq.com/cgi-bin/token
+[2022-11-14 13:02:11,305] logger_utils.py->print_log line:20 [INFO]请求params参数：{'grant_type': 'client_credential', 'appid': 'wxf393fadf3268a5d5', 'secret': ''}
+[2022-11-14 13:02:11,390] logger_utils.py->print_log line:20 [INFO]extract配置参数为空，请检查
+[2022-11-14 13:02:11,390] logger_utils.py->print_log line:20 [INFO]预期结果：[{'codes': {'status_code': 200}}, {'contains': '41004'}]
+[2022-11-14 13:02:11,390] logger_utils.py->print_log line:20 [INFO]实际结果：{'errcode': 41004, 'errmsg': 'appsecret missing rid: 6371cbd2-44bf663f-265780b5'},status_code:200
+[2022-11-14 13:02:11,390] logger_utils.py->print_log line:20 [INFO]状态码断言
+[2022-11-14 13:02:11,390] logger_utils.py->print_log line:20 [INFO]包含断言
+[2022-11-14 13:02:11,390] logger_utils.py->print_log line:20 [INFO]获取鉴权码-secret为空业务断言成功
+[2022-11-14 13:02:11,391] logger_utils.py->print_log line:20 [INFO]----------------获取鉴权码-secret为空接口测试结束----------------
+
+[2022-11-14 13:02:11,400] logger_utils.py->print_log line:20 [INFO]----------------选择标签-正例接口测试开始----------------
+[2022-11-14 13:02:11,401] logger_utils.py->print_log line:20 [INFO]params参数不存在，请注意
+[2022-11-14 13:02:11,401] logger_utils.py->print_log line:20 [INFO]请求方式：get
+[2022-11-14 13:02:11,415] logger_utils.py->error_log line:15 [ERROR]requests_utils模块replace_get_value方法报错：Traceback (most recent call last):
+  File "D:\Python_project\ms-jiekou\commons\requests_util.py", line 151, in replace_get_value
+    new_value = getattr(DebugTalk(), function_name)(*all_args_value)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_project\ms-jiekou\hotloads\debug_talk.py", line 17, in read_extract
+    return result[key]
+           ~~~~~~^^^^^
+TypeError: 'NoneType' object is not subscriptable
+
+[2022-11-14 13:02:11,416] logger_utils.py->error_log line:15 [ERROR]requests_utils模块send_all_request方法报错：Traceback (most recent call last):
+  File "D:\Python_project\ms-jiekou\commons\requests_util.py", line 151, in replace_get_value
+    new_value = getattr(DebugTalk(), function_name)(*all_args_value)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_project\ms-jiekou\hotloads\debug_talk.py", line 17, in read_extract
+    return result[key]
+           ~~~~~~^^^^^
+TypeError: 'NoneType' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Python_project\ms-jiekou\commons\requests_util.py", line 101, in send_all_request
+    url = self.replace_get_value(base_url + url)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_project\ms-jiekou\commons\requests_util.py", line 166, in replace_get_value
+    error_log("requests_utils模块replace_get_value方法报错：%s" % str(traceback.format_exc()))
+  File "D:\Python_project\ms-jiekou\commons\logger_utils.py", line 16, in error_log
+    raise AssertionError(message)
+AssertionError: requests_utils模块replace_get_value方法报错：Traceback (most recent call last):
+  File "D:\Python_project\ms-jiekou\commons\requests_util.py", line 151, in replace_get_value
+    new_value = getattr(DebugTalk(), function_name)(*all_args_value)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_project\ms-jiekou\hotloads\debug_talk.py", line 17, in read_extract
+    return result[key]
+           ~~~~~~^^^^^
+TypeError: 'NoneType' object is not subscriptable
+
+
+[2022-11-14 13:02:11,417] logger_utils.py->error_log line:15 [ERROR]requests_utils模块standard_yaml_testcase方法报错：Traceback (most recent call last):
+  File "D:\Python_project\ms-jiekou\commons\requests_util.py", line 151, in replace_get_value
+    new_value = getattr(DebugTalk(), function_name)(*all_args_value)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_project\ms-jiekou\hotloads\debug_talk.py", line 17, in read_extract
+    return result[key]
+           ~~~~~~^^^^^
+TypeError: 'NoneType' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Python_project\ms-jiekou\commons\requests_util.py", line 101, in send_all_request
+    url = self.replace_get_value(base_url + url)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_project\ms-jiekou\commons\requests_util.py", line 166, in replace_get_value
+    error_log("requests_utils模块replace_get_value方法报错：%s" % str(traceback.format_exc()))
+  File "D:\Python_project\ms-jiekou\commons\logger_utils.py", line 16, in error_log
+    raise AssertionError(message)
+AssertionError: requests_utils模块replace_get_value方法报错：Traceback (most recent call last):
+  File "D:\Python_project\ms-jiekou\commons\requests_util.py", line 151, in replace_get_value
+    new_value = getattr(DebugTalk(), function_name)(*all_args_value)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_project\ms-jiekou\hotloads\debug_talk.py", line 17, in read_extract
+    return result[key]
+           ~~~~~~^^^^^
+TypeError: 'NoneType' object is not subscriptable
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Python_project\ms-jiekou\commons\requests_util.py", line 45, in standard_yaml_testcase
+    res = self.send_all_request(method, url, base_url, **caseinfo['request'])
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_project\ms-jiekou\commons\requests_util.py", line 118, in send_all_request
+    error_log("requests_utils模块send_all_request方法报错：%s" % str(traceback.format_exc()))
+  File "D:\Python_project\ms-jiekou\commons\logger_utils.py", line 16, in error_log
+    raise AssertionError(message)
+AssertionError: requests_utils模块send_all_request方法报错：Traceback (most recent call last):
+  File "D:\Python_project\ms-jiekou\commons\requests_util.py", line 151, in replace_get_value
+    new_value = getattr(DebugTalk(), function_name)(*all_args_value)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_project\ms-jiekou\hotloads\debug_talk.py", line 17, in read_extract
+    return result[key]
+           ~~~~~~^^^^^
+TypeError: 'NoneType' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Python_project\ms-jiekou\commons\requests_util.py", line 101, in send_all_request
+    url = self.replace_get_value(base_url + url)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_project\ms-jiekou\commons\requests_util.py", line 166, in replace_get_value
+    error_log("requests_utils模块replace_get_value方法报错：%s" % str(traceback.format_exc()))
+  File "D:\Python_project\ms-jiekou\commons\logger_utils.py", line 16, in error_log
+    raise AssertionError(message)
+AssertionError: requests_utils模块replace_get_value方法报错：Traceback (most recent call last):
+  File "D:\Python_project\ms-jiekou\commons\requests_util.py", line 151, in replace_get_value
+    new_value = getattr(DebugTalk(), function_name)(*all_args_value)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_project\ms-jiekou\hotloads\debug_talk.py", line 17, in read_extract
+    return result[key]
+           ~~~~~~^^^^^
+TypeError: 'NoneType' object is not subscriptable
+
+
+

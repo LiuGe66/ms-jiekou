@@ -4,7 +4,6 @@
 # @Time : 2022/11/5 15:05
 import allure
 import pytest
-
 from commons.ddt_utils import read_case_yaml
 from commons.logger_utils import print_log
 from commons.requests_util import RequestUtil
@@ -22,7 +21,7 @@ class TestApi:
     @pytest.mark.parametrize("caseinfo", read_case_yaml("testcases/user_manager/get_token.yaml"))
     def test_get_token(self, caseinfo):
         RequestUtil(DebugTalk).standard_yaml_testcase(caseinfo)
-    #
+
     # @allure.title("选择标签测试用例")
     # @pytest.mark.run(order=2)
     # @pytest.mark.smoke
@@ -43,9 +42,9 @@ class TestApi:
     # @pytest.mark.parametrize("caseinfo", read_case_yaml("testcases/user_manager/delete_flag.yaml"))
     # def test_del_flag(self,caseinfo):
     #     RequestUtil(DebugTalk).standard_yaml_testcase(caseinfo)
-    #
-    # @allure.title("文件上传测试用例")
-    # @pytest.mark.run(order=5)
-    # @pytest.mark.parametrize("caseinfo", read_case_yaml("testcases/user_manager/files_upload.yaml"))
-    # def test_file_upload(self,caseinfo):
-    #     RequestUtil(DebugTalk).standard_yaml_testcase(caseinfo)
+
+    @allure.title("文件上传测试用例")
+    @pytest.mark.run(order=5)
+    @pytest.mark.parametrize("caseinfo", read_case_yaml("testcases/user_manager/files_upload.yaml"))
+    def test_file_upload(self,caseinfo):
+        RequestUtil(DebugTalk).standard_yaml_testcase(caseinfo)

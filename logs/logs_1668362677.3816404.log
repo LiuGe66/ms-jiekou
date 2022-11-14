@@ -1,0 +1,17 @@
+[2022-11-14 02:04:37,384] logger_utils.py->print_log line:20 [INFO]----------------$ddt{name}接口测试开始----------------
+[2022-11-14 02:04:37,385] logger_utils.py->print_log line:20 [INFO]请求方式：get
+[2022-11-14 02:04:37,386] logger_utils.py->print_log line:20 [INFO]请求地址：https://api.weixin.qq.com/cgi-bin/token
+[2022-11-14 02:04:37,386] logger_utils.py->print_log line:20 [INFO]请求params参数：{'grant_type': '$ddt{grant_type}', 'appid': '$ddt{appid}', 'secret': '$ddt{secret}'}
+[2022-11-14 02:04:37,570] logger_utils.py->print_log line:20 [INFO]正则表达式"access_token":"(.*?)"可能有误，或者(反例)接口请求失败，未提取到中间变量
+[2022-11-14 02:04:37,572] logger_utils.py->print_log line:20 [INFO]jsonpath表达式$..expires_in可能有误，或者(反例)接口请求失败，未提取到中间变量
+[2022-11-14 02:04:37,572] logger_utils.py->print_log line:20 [INFO]预期结果：[{'codes': {'status_code': 200}}, {'contains': '$ddt{assert_str}'}]
+[2022-11-14 02:04:37,572] logger_utils.py->print_log line:20 [INFO]实际结果：{'errcode': 40013, 'errmsg': 'invalid appid rid: 637131b4-66ae73e1-73fc2ebf'},status_code:200
+[2022-11-14 02:04:37,572] logger_utils.py->print_log line:20 [INFO]状态码断言
+[2022-11-14 02:04:37,573] logger_utils.py->print_log line:20 [INFO]包含断言
+[2022-11-14 02:04:37,573] logger_utils.py->print_log line:20 [INFO]contains断言失败：返回的结果中没有$ddt{assert_str}
+[2022-11-14 02:04:37,573] logger_utils.py->print_log line:20 [INFO]$ddt{name}业务断言失败
+[2022-11-14 02:04:37,573] logger_utils.py->error_log line:15 [ERROR]requests_utils模块standard_yaml_testcase方法报错：Traceback (most recent call last):
+  File "D:\Python_project\ms-jiekou\commons\requests_util.py", line 74, in standard_yaml_testcase
+    assert 1 == 2, print_log("{}业务断言失败".format(caseinfo["name"]))
+AssertionError: None
+

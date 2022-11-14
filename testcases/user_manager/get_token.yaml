@@ -1,7 +1,7 @@
 -
   name: $ddt{name}
   request:
-    method:
+    method: get
     base_url: ${read_config(base_url)}
     url: /cgi-bin/token
     params:
@@ -11,15 +11,15 @@
   extract:
     access_token: '"access_token":"(.*?)"'
     expires_in: $..expires_in
-  parameterize:
-    - ['name', 'appid', 'secret', 'grant_type', 'assert_str']
-    - ['获取鉴权码-正例','wxf393fadf3268a5d5','e9a29dfa3920020ebee3675bcc9c2cf8','client_credential','access_token']
-    - ['获取鉴权码-appid为空','','e9a29dfa3920020ebee3675bcc9c2cf8','client_credential',41002]
-    - ['获取鉴权码-secret为空','wxf393fadf3268a5d5','','client_credential',41004]
   validate:
     - codes: {status_code: 200}
 #    - equals: {expires_in: 7200}
     - contains: $ddt{assert_str}
+  parameterize:
+    - [ 'name', 'appid', 'secret', 'grant_type', 'assert_str' ]
+    - [ '获取鉴权码-正例','wxf393fadf3268a5d5','e9a29dfa3920020ebee3675bcc9c2cf8','client_credential','access_token' ]
+    - [ '获取鉴权码-appid为空','','e9a29dfa3920020ebee3675bcc9c2cf8','client_credential',41002 ]
+    - [ '获取鉴权码-secret为空','wxf393fadf3268a5d5','','client_credential',41004 ]
 
 
 

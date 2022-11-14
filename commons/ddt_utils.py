@@ -43,11 +43,13 @@ def parameterize_ddt(caseinfo):
                 print_log("name为：'{}'的这条数据有误，请检查。".format(param[0]))
                 error_log('数据规范发现异常：key与value的数量不对应')
                 continue
+            else:
+                break
         new_caseinfo = []
         if length_success:
             for x in range(1, len(data_list)):
                 raw_caseinfo = caseinfo_str
-                for y in range(0, len(data_list)+1):
+                for y in range(0, len(data_list[x])):
                     raw_caseinfo = raw_caseinfo.replace("$ddt{" + data_list[0][y] + "}", str(data_list[x][y]))
                 new_caseinfo.append(json.loads(raw_caseinfo))
         return new_caseinfo
