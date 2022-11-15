@@ -1,0 +1,11 @@
+INFO     log:logger_utils.py:20 ----------------rsa加密接口接口测试开始----------------
+INFO     log:logger_utils.py:20 params参数不存在，请注意
+INFO     log:logger_utils.py:20 请求方式：post
+INFO     log:logger_utils.py:20 请求地址：http://101.34.221.219:5000/rsalogin
+INFO     log:logger_utils.py:20 请求data参数：{'username': 'C2PCjDN9p918Gl/GHF6zZBKDl5bvTaRVertAN8Uj++gt39fXn/5SVKz4S+bSHf4ptIhP2TJ0jwJ8lAHTIhyst0/Pg8Tm+14i3kWSsTMiOMwsCLLZ7M9J122FgfULERVxN1JTQWLHXZgCiF6mZa46+3B8CG67+EWo/+FyWu2fsjo=', 'password': 'SrOZgv1CwQ2A3DAMwyXlOWgrHbkCEINjVOcz74b0pL2iM9dxkhBKXWJALwucIyIJj/ZjcKvFOz3M+IXmhi4xTLItNPCEdRMMMI67ZwMqMqMX4xIPEuz6QRqO93ZJxrRwx6nleJabOGD00TMicycyszG5jUa3c2yqNRJvQJq2qpk='}
+INFO     log:logger_utils.py:20 预期结果：[{'contains': 'RSA加密登陆成功'}, {'codes': {'status_code': 200}}]
+INFO     log:logger_utils.py:20 实际结果：{'error_code': 0, 'message': 'RSA加密登陆成功！'},status_code:200
+INFO     log:logger_utils.py:20 执行包含断言
+INFO     log:logger_utils.py:20 执行状态码断言
+INFO     log:logger_utils.py:20 rsa加密接口业务断言成功
+INFO     log:logger_utils.py:20 ----------------rsa加密接口接口测试结束----------------

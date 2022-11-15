@@ -1,0 +1,11 @@
+INFO     log:logger_utils.py:20 ----------------删除标签接口测试开始----------------
+INFO     log:logger_utils.py:20 请求方式：post
+INFO     log:logger_utils.py:20 请求地址：https://api.weixin.qq.com/cgi-bin/tags/delete
+INFO     log:logger_utils.py:20 请求params参数：{'access_token': '62_r-mXehmonHBl0_VgyH7t0SCVsdHeyPEF_bWqlgfVl0uLuPOZxXL5k2iWlURSVufYJ2mkNKAfL6hneuTCwQKcrth5IJp4eymELfbAeWiL5DQhTYeCDp-G_DxHY3oXMXaADARGR'}
+INFO     log:logger_utils.py:20 请求json参数：{'tag': {'id': 134}}
+INFO     log:logger_utils.py:20 预期结果：[{'equals': {'errcode': 0}}, {'codes': {'status_code': 200}}]
+INFO     log:logger_utils.py:20 实际结果：{'errcode': 0, 'errmsg': 'ok'},status_code:200
+INFO     log:logger_utils.py:20 执行相等断言
+INFO     log:logger_utils.py:20 执行状态码断言
+INFO     log:logger_utils.py:20 删除标签业务断言成功
+INFO     log:logger_utils.py:20 ----------------删除标签接口测试结束----------------

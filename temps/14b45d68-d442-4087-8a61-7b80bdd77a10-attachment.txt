@@ -1,0 +1,11 @@
+INFO     log:logger_utils.py:20 ----------------md5加密接口接口测试开始----------------
+INFO     log:logger_utils.py:20 params参数不存在，请注意
+INFO     log:logger_utils.py:20 请求方式：post
+INFO     log:logger_utils.py:20 请求地址：http://101.34.221.219:5000/md5login
+INFO     log:logger_utils.py:20 请求data参数：{'username': '21232f297a57a5a743894a0e4a801fc3', 'password': '202cb962ac59075b964b07152d234b70'}
+INFO     log:logger_utils.py:20 预期结果：[{'contains': 'MD5加密登陆成'}, {'codes': {'status_code': 200}}]
+INFO     log:logger_utils.py:20 实际结果：{'error_code': 0, 'message': 'MD5加密登陆成功！'},status_code:200
+INFO     log:logger_utils.py:20 执行包含断言
+INFO     log:logger_utils.py:20 执行状态码断言
+INFO     log:logger_utils.py:20 md5加密接口业务断言成功
+INFO     log:logger_utils.py:20 ----------------md5加密接口接口测试结束----------------

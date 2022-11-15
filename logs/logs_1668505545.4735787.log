@@ -1,0 +1,154 @@
+[2022-11-15 17:45:45,476] logger_utils.py->print_log line:20 [INFO]----------------获取鉴权码-正例接口测试开始----------------
+[2022-11-15 17:45:45,476] logger_utils.py->print_log line:20 [INFO]请求方式：get
+[2022-11-15 17:45:45,477] logger_utils.py->print_log line:20 [INFO]请求地址：https://api.weixin.qq.com/cgi-bin/token
+[2022-11-15 17:45:45,477] logger_utils.py->print_log line:20 [INFO]请求params参数：{'grant_type': 'client_credential', 'appid': 'wx522952477b8bda67', 'secret': 'fc3d0e7c0d53005751b795f57f743554'}
+[2022-11-15 17:45:45,861] logger_utils.py->print_log line:20 [INFO]预期结果：[{'codes': {'status_code': 200}}, {'contains': 'access_token'}]
+[2022-11-15 17:45:45,862] logger_utils.py->print_log line:20 [INFO]实际结果：{'access_token': '62_AVZZc5q0UiVlw-7UO7sF_ZtnP5QNEy29P45ukDnaof_KIIkPdDUE1SxidqHo0dGoDE3_YAPW1Gsqw4WIAbGmHbY4r5oTmyf2o-BKBHqnsn6I8-h-MAzvf3N-wFcAZVaADAVUQ', 'expires_in': 7200},status_code:200
+[2022-11-15 17:45:45,862] logger_utils.py->print_log line:20 [INFO]执行状态码断言
+[2022-11-15 17:45:45,863] logger_utils.py->print_log line:20 [INFO]执行包含断言
+[2022-11-15 17:45:45,863] logger_utils.py->print_log line:20 [INFO]获取鉴权码-正例业务断言成功
+[2022-11-15 17:45:45,863] logger_utils.py->print_log line:20 [INFO]----------------获取鉴权码-正例接口测试结束----------------
+
+[2022-11-15 17:45:45,870] logger_utils.py->print_log line:20 [INFO]----------------获取鉴权码-appid为空接口测试开始----------------
+[2022-11-15 17:45:45,870] logger_utils.py->print_log line:20 [INFO]请求方式：get
+[2022-11-15 17:45:45,871] logger_utils.py->print_log line:20 [INFO]请求地址：https://api.weixin.qq.com/cgi-bin/token
+[2022-11-15 17:45:45,871] logger_utils.py->print_log line:20 [INFO]请求params参数：{'grant_type': 'client_credential', 'appid': '', 'secret': 'e9a29dfa3920020ebee3675bcc9c2cf8'}
+[2022-11-15 17:45:45,914] logger_utils.py->print_log line:20 [INFO]正则表达式"access_token":"(.*?)"可能有误，或者(反例)接口请求失败，未提取到中间变量
+[2022-11-15 17:45:45,914] logger_utils.py->print_log line:20 [INFO]jsonpath表达式$..expires_in可能有误，或者(反例)接口请求失败，未提取到中间变量
+[2022-11-15 17:45:45,914] logger_utils.py->print_log line:20 [INFO]预期结果：[{'codes': {'status_code': 200}}, {'contains': '41002'}]
+[2022-11-15 17:45:45,915] logger_utils.py->print_log line:20 [INFO]实际结果：{'errcode': 41002, 'errmsg': 'appid missing rid: 63735fc9-79f91cd4-75573777'},status_code:200
+[2022-11-15 17:45:45,915] logger_utils.py->print_log line:20 [INFO]执行状态码断言
+[2022-11-15 17:45:45,915] logger_utils.py->print_log line:20 [INFO]执行包含断言
+[2022-11-15 17:45:45,915] logger_utils.py->print_log line:20 [INFO]获取鉴权码-appid为空业务断言成功
+[2022-11-15 17:45:45,915] logger_utils.py->print_log line:20 [INFO]----------------获取鉴权码-appid为空接口测试结束----------------
+
+[2022-11-15 17:45:45,922] logger_utils.py->print_log line:20 [INFO]----------------获取鉴权码-secret为空接口测试开始----------------
+[2022-11-15 17:45:45,922] logger_utils.py->print_log line:20 [INFO]请求方式：get
+[2022-11-15 17:45:45,923] logger_utils.py->print_log line:20 [INFO]请求地址：https://api.weixin.qq.com/cgi-bin/token
+[2022-11-15 17:45:45,923] logger_utils.py->print_log line:20 [INFO]请求params参数：{'grant_type': 'client_credential', 'appid': 'wxf393fadf3268a5d5', 'secret': ''}
+[2022-11-15 17:45:46,000] logger_utils.py->print_log line:20 [INFO]正则表达式"access_token":"(.*?)"可能有误，或者(反例)接口请求失败，未提取到中间变量
+[2022-11-15 17:45:46,000] logger_utils.py->print_log line:20 [INFO]jsonpath表达式$..expires_in可能有误，或者(反例)接口请求失败，未提取到中间变量
+[2022-11-15 17:45:46,000] logger_utils.py->print_log line:20 [INFO]预期结果：[{'codes': {'status_code': 200}}, {'contains': '41004'}]
+[2022-11-15 17:45:46,001] logger_utils.py->print_log line:20 [INFO]实际结果：{'errcode': 41004, 'errmsg': 'appsecret missing rid: 63735fc9-230aaad0-4ddf045c'},status_code:200
+[2022-11-15 17:45:46,001] logger_utils.py->print_log line:20 [INFO]执行状态码断言
+[2022-11-15 17:45:46,001] logger_utils.py->print_log line:20 [INFO]执行包含断言
+[2022-11-15 17:45:46,001] logger_utils.py->print_log line:20 [INFO]获取鉴权码-secret为空业务断言成功
+[2022-11-15 17:45:46,001] logger_utils.py->print_log line:20 [INFO]----------------获取鉴权码-secret为空接口测试结束----------------
+
+[2022-11-15 17:45:46,022] logger_utils.py->print_log line:20 [INFO]----------------选择标签-正例接口测试开始----------------
+[2022-11-15 17:45:46,022] logger_utils.py->print_log line:20 [INFO]params参数不存在，请注意
+[2022-11-15 17:45:46,023] logger_utils.py->print_log line:20 [INFO]请求方式：get
+[2022-11-15 17:45:46,024] logger_utils.py->print_log line:20 [INFO]请求地址：https://api.weixin.qq.com/cgi-bin/tags/get?access_token=62_AVZZc5q0UiVlw-7UO7sF_ZtnP5QNEy29P45ukDnaof_KIIkPdDUE1SxidqHo0dGoDE3_YAPW1Gsqw4WIAbGmHbY4r5oTmyf2o-BKBHqnsn6I8-h-MAzvf3N-wFcAZVaADAVUQ
+[2022-11-15 17:45:46,138] logger_utils.py->print_log line:20 [INFO]预期结果：[{'contains': 'tags'}, {'codes': {'status_code': 200}}]
+[2022-11-15 17:45:46,138] logger_utils.py->print_log line:20 [INFO]实际结果：{'tags': [{'id': 2, 'name': '星标组', 'count': 0}]},status_code:200
+[2022-11-15 17:45:46,138] logger_utils.py->print_log line:20 [INFO]执行包含断言
+[2022-11-15 17:45:46,138] logger_utils.py->print_log line:20 [INFO]执行状态码断言
+[2022-11-15 17:45:46,138] logger_utils.py->print_log line:20 [INFO]选择标签-正例业务断言成功
+[2022-11-15 17:45:46,138] logger_utils.py->print_log line:20 [INFO]----------------选择标签-正例接口测试结束----------------
+
+[2022-11-15 17:45:46,144] logger_utils.py->print_log line:20 [INFO]----------------编辑标签接口测试开始----------------
+[2022-11-15 17:45:46,144] logger_utils.py->print_log line:20 [INFO]headers没有value,请确认
+[2022-11-15 17:45:46,144] logger_utils.py->print_log line:20 [INFO]请求方式：post
+[2022-11-15 17:45:46,146] logger_utils.py->print_log line:20 [INFO]请求地址：https://api.weixin.qq.com/cgi-bin/tags/update
+[2022-11-15 17:45:46,146] logger_utils.py->print_log line:20 [INFO]headers未填充，或者(反例)设计为空
+[2022-11-15 17:45:46,146] logger_utils.py->print_log line:20 [INFO]请求params参数：{'access_token': '62_AVZZc5q0UiVlw-7UO7sF_ZtnP5QNEy29P45ukDnaof_KIIkPdDUE1SxidqHo0dGoDE3_YAPW1Gsqw4WIAbGmHbY4r5oTmyf2o-BKBHqnsn6I8-h-MAzvf3N-wFcAZVaADAVUQ'}
+[2022-11-15 17:45:46,146] logger_utils.py->print_log line:20 [INFO]请求json参数：{'tag': {'id': 134, 'name': '广东人9198}'}}
+[2022-11-15 17:45:46,300] logger_utils.py->print_log line:20 [INFO]预期结果：[{'equals': {'errcode': 0}}, {'codes': {'status_code': 200}}]
+[2022-11-15 17:45:46,300] logger_utils.py->print_log line:20 [INFO]实际结果：{'errcode': -1, 'errmsg': 'system error hint: [wihfr0mre-FNeH8a] rid: 63735fc9-479dd668-7257e018'},status_code:200
+[2022-11-15 17:45:46,300] logger_utils.py->print_log line:20 [INFO]执行相等断言
+[2022-11-15 17:45:46,301] logger_utils.py->print_log line:20 [INFO]equals断言失败：errcode不等于0
+[2022-11-15 17:45:46,301] logger_utils.py->print_log line:20 [INFO]执行状态码断言
+[2022-11-15 17:45:46,301] logger_utils.py->print_log line:20 [INFO]编辑标签业务断言失败
+[2022-11-15 17:45:46,302] logger_utils.py->error_log line:15 [ERROR]requests_utils模块standard_yaml_testcase方法报错：Traceback (most recent call last):
+  File "D:\Python_project\ms-jiekou\commons\requests_util.py", line 83, in standard_yaml_testcase
+    assert 1 == 2, print_log("{}业务断言失败".format(caseinfo["name"]))
+AssertionError: None
+
+[2022-11-15 17:45:46,433] logger_utils.py->print_log line:20 [INFO]----------------删除标签接口测试开始----------------
+[2022-11-15 17:45:46,433] logger_utils.py->print_log line:20 [INFO]请求方式：post
+[2022-11-15 17:45:46,434] logger_utils.py->print_log line:20 [INFO]请求地址：https://api.weixin.qq.com/cgi-bin/tags/delete
+[2022-11-15 17:45:46,434] logger_utils.py->print_log line:20 [INFO]请求params参数：{'access_token': '62_AVZZc5q0UiVlw-7UO7sF_ZtnP5QNEy29P45ukDnaof_KIIkPdDUE1SxidqHo0dGoDE3_YAPW1Gsqw4WIAbGmHbY4r5oTmyf2o-BKBHqnsn6I8-h-MAzvf3N-wFcAZVaADAVUQ'}
+[2022-11-15 17:45:46,434] logger_utils.py->print_log line:20 [INFO]请求json参数：{'tag': {'id': 134}}
+[2022-11-15 17:45:46,537] logger_utils.py->print_log line:20 [INFO]预期结果：[{'equals': {'errcode': 0}}, {'codes': {'status_code': 200}}]
+[2022-11-15 17:45:46,537] logger_utils.py->print_log line:20 [INFO]实际结果：{'errcode': 0, 'errmsg': 'ok'},status_code:200
+[2022-11-15 17:45:46,537] logger_utils.py->print_log line:20 [INFO]执行相等断言
+[2022-11-15 17:45:46,537] logger_utils.py->print_log line:20 [INFO]执行状态码断言
+[2022-11-15 17:45:46,538] logger_utils.py->print_log line:20 [INFO]删除标签业务断言成功
+[2022-11-15 17:45:46,538] logger_utils.py->print_log line:20 [INFO]----------------删除标签接口测试结束----------------
+
+[2022-11-15 17:45:46,549] logger_utils.py->print_log line:20 [INFO]----------------文件上传-正例 接口测试开始----------------
+[2022-11-15 17:45:46,549] logger_utils.py->print_log line:20 [INFO]headers没有value,请确认
+[2022-11-15 17:45:46,549] logger_utils.py->print_log line:20 [INFO]json没有value,请确认
+[2022-11-15 17:45:46,550] logger_utils.py->print_log line:20 [INFO]请求方式：post
+[2022-11-15 17:45:46,550] logger_utils.py->print_log line:20 [INFO]请求地址：https://api.weixin.qq.com/cgi-bin/media/uploadimg
+[2022-11-15 17:45:46,551] logger_utils.py->print_log line:20 [INFO]headers未填充，或者(反例)设计为空
+[2022-11-15 17:45:46,551] logger_utils.py->print_log line:20 [INFO]请求params参数：{'access_token': '62_AVZZc5q0UiVlw-7UO7sF_ZtnP5QNEy29P45ukDnaof_KIIkPdDUE1SxidqHo0dGoDE3_YAPW1Gsqw4WIAbGmHbY4r5oTmyf2o-BKBHqnsn6I8-h-MAzvf3N-wFcAZVaADAVUQ'}
+[2022-11-15 17:45:46,551] logger_utils.py->print_log line:20 [INFO]json未填充，或者(反例)设计为空
+[2022-11-15 17:45:47,064] logger_utils.py->print_log line:20 [INFO]预期结果：[{'contains': 'url'}]
+[2022-11-15 17:45:47,064] logger_utils.py->print_log line:20 [INFO]实际结果：{'url': 'http://mmbiz.qpic.cn/mmbiz_jpg/RPj532nFvaCHYgaUaIBNGL0FJNYmx5kBpKdOc1lFcSeeVlLs2icia9zyUM8ibPxoe2ib5CNm9utmP7Gmj4dQ6ebmtg/0'},status_code:200
+[2022-11-15 17:45:47,064] logger_utils.py->print_log line:20 [INFO]执行包含断言
+[2022-11-15 17:45:47,064] logger_utils.py->print_log line:20 [INFO]文件上传-正例 业务断言成功
+[2022-11-15 17:45:47,065] logger_utils.py->print_log line:20 [INFO]----------------文件上传-正例 接口测试结束----------------
+
+[2022-11-15 17:45:47,098] logger_utils.py->print_log line:20 [INFO]----------------文件上传-请求方式错误 接口测试开始----------------
+[2022-11-15 17:45:47,098] logger_utils.py->print_log line:20 [INFO]headers没有value,请确认
+[2022-11-15 17:45:47,098] logger_utils.py->print_log line:20 [INFO]json没有value,请确认
+[2022-11-15 17:45:47,098] logger_utils.py->print_log line:20 [INFO]请求方式：get
+[2022-11-15 17:45:47,099] logger_utils.py->print_log line:20 [INFO]请求地址：https://api.weixin.qq.com/cgi-bin/media/uploadimg
+[2022-11-15 17:45:47,099] logger_utils.py->print_log line:20 [INFO]headers未填充，或者(反例)设计为空
+[2022-11-15 17:45:47,100] logger_utils.py->print_log line:20 [INFO]请求params参数：{'access_token': '62_AVZZc5q0UiVlw-7UO7sF_ZtnP5QNEy29P45ukDnaof_KIIkPdDUE1SxidqHo0dGoDE3_YAPW1Gsqw4WIAbGmHbY4r5oTmyf2o-BKBHqnsn6I8-h-MAzvf3N-wFcAZVaADAVUQ'}
+[2022-11-15 17:45:47,100] logger_utils.py->print_log line:20 [INFO]json未填充，或者(反例)设计为空
+[2022-11-15 17:45:47,255] logger_utils.py->print_log line:20 [INFO]预期结果：[{'contains': '43002'}]
+[2022-11-15 17:45:47,255] logger_utils.py->print_log line:20 [INFO]实际结果：{'errcode': 43002, 'errmsg': 'require POST method hint: [NWKCOa05460022] rid: 63735fca-5a500706-21feb043'},status_code:200
+[2022-11-15 17:45:47,255] logger_utils.py->print_log line:20 [INFO]执行包含断言
+[2022-11-15 17:45:47,255] logger_utils.py->print_log line:20 [INFO]文件上传-请求方式错误 业务断言成功
+[2022-11-15 17:45:47,255] logger_utils.py->print_log line:20 [INFO]----------------文件上传-请求方式错误 接口测试结束----------------
+
+[2022-11-15 17:45:47,262] logger_utils.py->print_log line:20 [INFO]----------------md5加密接口接口测试开始----------------
+[2022-11-15 17:45:47,262] logger_utils.py->print_log line:20 [INFO]params参数不存在，请注意
+[2022-11-15 17:45:47,262] logger_utils.py->print_log line:20 [INFO]请求方式：post
+[2022-11-15 17:45:47,262] logger_utils.py->print_log line:20 [INFO]请求地址：http://101.34.221.219:5000/md5login
+[2022-11-15 17:45:47,262] logger_utils.py->print_log line:20 [INFO]请求data参数：{'username': '21232f297a57a5a743894a0e4a801fc3', 'password': '202cb962ac59075b964b07152d234b70'}
+[2022-11-15 17:45:47,336] logger_utils.py->print_log line:20 [INFO]预期结果：[{'contains': 'MD5加密登陆成'}, {'codes': {'status_code': 200}}]
+[2022-11-15 17:45:47,336] logger_utils.py->print_log line:20 [INFO]实际结果：{'error_code': 0, 'message': 'MD5加密登陆成功！'},status_code:200
+[2022-11-15 17:45:47,336] logger_utils.py->print_log line:20 [INFO]执行包含断言
+[2022-11-15 17:45:47,337] logger_utils.py->print_log line:20 [INFO]执行状态码断言
+[2022-11-15 17:45:47,337] logger_utils.py->print_log line:20 [INFO]md5加密接口业务断言成功
+[2022-11-15 17:45:47,337] logger_utils.py->print_log line:20 [INFO]----------------md5加密接口接口测试结束----------------
+
+[2022-11-15 17:45:47,344] logger_utils.py->print_log line:20 [INFO]----------------base64加密接口接口测试开始----------------
+[2022-11-15 17:45:47,345] logger_utils.py->print_log line:20 [INFO]params参数不存在，请注意
+[2022-11-15 17:45:47,345] logger_utils.py->print_log line:20 [INFO]请求方式：post
+[2022-11-15 17:45:47,345] logger_utils.py->print_log line:20 [INFO]请求地址：http://101.34.221.219:5000/base64login
+[2022-11-15 17:45:47,345] logger_utils.py->print_log line:20 [INFO]请求data参数：{'username': 'YWRtaW4=', 'password': 'MTIz'}
+[2022-11-15 17:45:47,418] logger_utils.py->print_log line:20 [INFO]预期结果：[{'contains': 'Base64加密登陆成功'}, {'codes': {'status_code': 200}}]
+[2022-11-15 17:45:47,418] logger_utils.py->print_log line:20 [INFO]实际结果：{'error_code': 0, 'message': 'Base64加密登陆成功！'},status_code:200
+[2022-11-15 17:45:47,418] logger_utils.py->print_log line:20 [INFO]执行包含断言
+[2022-11-15 17:45:47,419] logger_utils.py->print_log line:20 [INFO]执行状态码断言
+[2022-11-15 17:45:47,419] logger_utils.py->print_log line:20 [INFO]base64加密接口业务断言成功
+[2022-11-15 17:45:47,419] logger_utils.py->print_log line:20 [INFO]----------------base64加密接口接口测试结束----------------
+
+[2022-11-15 17:45:47,426] logger_utils.py->print_log line:20 [INFO]----------------rsa加密接口接口测试开始----------------
+[2022-11-15 17:45:47,426] logger_utils.py->print_log line:20 [INFO]params参数不存在，请注意
+[2022-11-15 17:45:47,426] logger_utils.py->print_log line:20 [INFO]请求方式：post
+[2022-11-15 17:45:47,427] logger_utils.py->print_log line:20 [INFO]请求地址：http://101.34.221.219:5000/rsalogin
+[2022-11-15 17:45:47,453] logger_utils.py->print_log line:20 [INFO]请求data参数：{'username': 'XUmw3YdBLZm1IfrRw5v9HSdHT6ZBoJPwUXIqasWOunyfrZ4RfqzqTUMF6EP+5gi2dP3vf5o8LncQIBhIiLwr5bQ8/0UggxDR26JdwKVLvfQQpv/IKsRCOnBA8RzpQ0sQSl2FCrcxJSekG1PEI1xzwCOXk/JvcPE27A70P5mqKHI=', 'password': 'eKXSFcp1qDtVtL9nhdSE5R4/o+uioAhJDz6dsVM7f9Z0pFCCKrK0p8QXuW4HKhFPtq2tYoIQZ+kkhrFIWoO4c5CwTJyerY4g3fX4S1rMWETiQTk7I0AVh9Mbl3L2gfwKK1yVYZOs5Q7ZrQh29ibFcb7y6XlhZq1CUS3BSofHVww='}
+[2022-11-15 17:45:47,534] logger_utils.py->print_log line:20 [INFO]预期结果：[{'contains': 'RSA加密登陆成功'}, {'codes': {'status_code': 200}}]
+[2022-11-15 17:45:47,534] logger_utils.py->print_log line:20 [INFO]实际结果：{'error_code': 0, 'message': 'RSA加密登陆成功！'},status_code:200
+[2022-11-15 17:45:47,534] logger_utils.py->print_log line:20 [INFO]执行包含断言
+[2022-11-15 17:45:47,534] logger_utils.py->print_log line:20 [INFO]执行状态码断言
+[2022-11-15 17:45:47,534] logger_utils.py->print_log line:20 [INFO]rsa加密接口业务断言成功
+[2022-11-15 17:45:47,534] logger_utils.py->print_log line:20 [INFO]----------------rsa加密接口接口测试结束----------------
+
+[2022-11-15 17:45:47,543] logger_utils.py->print_log line:20 [INFO]----------------sign接口接口测试开始----------------
+[2022-11-15 17:45:47,543] logger_utils.py->print_log line:20 [INFO]请求方式：post
+[2022-11-15 17:45:47,543] logger_utils.py->print_log line:20 [INFO]请求地址：http://47.107.116.139/phpwind/?b=2&c=3
+[2022-11-15 17:45:47,546] logger_utils.py->print_log line:20 [INFO]请求headers参数：{'sign': 'B5CC53F0863892488E5BDCD6ED9A788E'}
+[2022-11-15 17:45:47,546] logger_utils.py->print_log line:20 [INFO]请求params参数：{'a': 1}
+[2022-11-15 17:45:47,547] logger_utils.py->print_log line:20 [INFO]请求data参数：{'username': 'admin', 'password': 123}
+[2022-11-15 17:45:47,648] logger_utils.py->print_log line:20 [INFO]响应不是json数据格式
+[2022-11-15 17:45:47,648] logger_utils.py->print_log line:20 [INFO]预期结果：None
+[2022-11-15 17:45:47,648] logger_utils.py->print_log line:20 [INFO]实际结果：,status_code:404
+[2022-11-15 17:45:47,649] logger_utils.py->print_log line:20 [INFO]无断言参数，未执行断言
+[2022-11-15 17:45:47,649] logger_utils.py->print_log line:20 [INFO]----------------sign接口接口测试结束----------------
+

@@ -1,0 +1,11 @@
+INFO     log:logger_utils.py:20 ----------------sign接口接口测试开始----------------
+INFO     log:logger_utils.py:20 请求方式：post
+INFO     log:logger_utils.py:20 请求地址：http://47.107.116.139/phpwind/?b=2&c=3
+INFO     log:logger_utils.py:20 请求headers参数：{'sign': '062AB4839F6AF4725AF9EC87C7830601'}
+INFO     log:logger_utils.py:20 请求params参数：{'a': 1}
+INFO     log:logger_utils.py:20 请求data参数：{'username': 'admin', 'password': 123}
+INFO     log:logger_utils.py:20 响应不是json数据格式
+INFO     log:logger_utils.py:20 预期结果：None
+INFO     log:logger_utils.py:20 实际结果：,status_code:404
+INFO     log:logger_utils.py:20 无断言参数，未执行断言
+INFO     log:logger_utils.py:20 ----------------sign接口接口测试结束----------------
