@@ -2,9 +2,12 @@ INFO     log:logger_utils.py:20 ----------------获取鉴权码-正例接口测�
 INFO     log:logger_utils.py:20 请求方式：get
 INFO     log:logger_utils.py:20 请求地址：https://api.weixin.qq.com/cgi-bin/token
 INFO     log:logger_utils.py:20 请求params参数：{'grant_type': 'client_credential', 'appid': 'wx522952477b8bda67', 'secret': 'fc3d0e7c0d53005751b795f57f743554'}
-INFO     log:logger_utils.py:20 预期结果：[{'codes': {'status_code': 200}}, {'contains': 'access_token'}]
-INFO     log:logger_utils.py:20 实际结果：{'access_token': '62_r-mXehmonHBl0_VgyH7t0SCVsdHeyPEF_bWqlgfVl0uLuPOZxXL5k2iWlURSVufYJ2mkNKAfL6hneuTCwQKcrth5IJp4eymELfbAeWiL5DQhTYeCDp-G_DxHY3oXMXaADARGR', 'expires_in': 7200},status_code:200
+INFO     log:logger_utils.py:20 预期结果：[{'codes': {'status_code': 200}}, {'equals': {'expires_in': 7200}}, {'contains': 'access_token'}]
+INFO     log:logger_utils.py:20 实际结果：{'access_token': '62_eGO25sYy8kAysuveHvqNjdoZi_aQQnIcNKCMVTfD5n4jf_GqNlWaC5NmF1WHD1KeV_wagG8ctEsNbSk57fye2mzLgKPtmYMbMpPgtYY5Q2Exe2bZav1kgi9vMkkJAXhAAAPGD', 'expires_in': 7200},status_code:200
 INFO     log:logger_utils.py:20 执行状态码断言
+INFO     log:logger_utils.py:20 codes断言成功
+INFO     log:logger_utils.py:20 equals断言执行成功
 INFO     log:logger_utils.py:20 执行包含断言
+INFO     log:logger_utils.py:20 contains断言成功
 INFO     log:logger_utils.py:20 获取鉴权码-正例业务断言成功
 INFO     log:logger_utils.py:20 ----------------获取鉴权码-正例接口测试结束----------------

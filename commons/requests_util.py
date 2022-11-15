@@ -76,7 +76,7 @@ class RequestUtil:
                     print_log("实际结果：{},status_code:{}".format(actual_result, status_code))
                     all_flag = assert_result(expect_result, actual_result, status_code)
                     if all_flag == 0:
-                        print_log("{}业务断言成功".format(caseinfo["name"]))
+                        print_log("{} 已选断言类型全部断言成功，测试通过".format(caseinfo["name"]))
                     elif all_flag == -1:
                         print_log("无断言参数，未执行断言")
                     else:
