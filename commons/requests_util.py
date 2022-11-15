@@ -5,7 +5,6 @@
 import json
 import re
 import traceback
-from email import message
 import jsonpath
 import requests
 from commons.assert_utils import assert_result
@@ -48,7 +47,7 @@ class RequestUtil:
                     js_result = ''
                     try:
                         js_result = res.json()  # 接收json响应结果
-                    except():
+                    except Exception as e:
                         print_log('响应不是json数据格式')
                     # 提取需要关联的值，并写入extract.yaml
                     if 'extract' in caseinfo.keys() and caseinfo['extract'] is not None:
@@ -140,19 +139,15 @@ class RequestUtil:
                         # 反射：通过类的对象和方法名字符串调用方法
                         # 得到方法名
                         function_name = old_value[2:old_value.index("(")]
-                        # print(function_name)
                         # 得到参数
                         args_value = old_value[old_value.index("(") + 1:old_value.index(")")]
-                        # print("args_value:{}".format(args_value))
                         if args_value != "":
                             # 有参数，分割参数
                             all_args_value = args_value.split(",")
                             new_value = getattr(DebugTalk(), function_name)(*all_args_value)
-                            # print(new_value)
                         else:
                             # 没有参数
                             new_value = getattr(DebugTalk(), function_name)()
-                            # print(new_value)
                         # 把旧的表达式替换成新的值
                         str_data = str_data.replace(old_value, str(new_value))
                 # 还原数据类型
@@ -164,7 +159,4 @@ class RequestUtil:
         except Exception as e:
             error_log("requests_utils模块replace_get_value方法报错：%s" % str(traceback.format_exc()))
             raise e
-        #
-        # else:
-        #     print_log('request-line135-000000000000000000000000000000000000000未填充，或者反例设计数据为空')
-        #     return data  # 返回值
+

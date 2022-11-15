@@ -1,5 +1,6 @@
 #基础路径的配置：
 base_url: https://api.weixin.qq.com
+#base_url: https://api.weixin.qq.com
 #日志的配置
 log:
   log_file_name: logs_

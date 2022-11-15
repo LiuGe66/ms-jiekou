@@ -1,0 +1,12 @@
+-
+  name:  rsa加密接口
+  request:
+    method: post
+    base_url: http://101.34.221.219:5000
+    url: /rsalogin
+    data:
+      username: ${rsa_encrypt(admin)}
+      password: ${rsa_encrypt(123)}
+  validate:
+    - contains: RSA加密登陆成功
+    - codes: { status_code: 200 }

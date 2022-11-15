@@ -4,7 +4,6 @@
 # @Time : 2022/11/5 16:15
 import os
 from time import sleep
-
 import pytest
 
 from commons.yaml_util import read_yaml

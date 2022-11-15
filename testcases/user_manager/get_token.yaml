@@ -17,7 +17,7 @@
     - contains: $ddt{assert_str}
   parameterize:
     - [ 'name', 'appid', 'secret', 'grant_type', 'assert_str' ]
-    - [ '获取鉴权码-正例','wxf393fadf3268a5d5','e9a29dfa3920020ebee3675bcc9c2cf8','client_credential','access_token' ]
+    - [ '获取鉴权码-正例','wx522952477b8bda67','fc3d0e7c0d53005751b795f57f743554','client_credential','access_token' ]
     - [ '获取鉴权码-appid为空','','e9a29dfa3920020ebee3675bcc9c2cf8','client_credential',41002 ]
     - [ '获取鉴权码-secret为空','wxf393fadf3268a5d5','','client_credential',41004 ]
 

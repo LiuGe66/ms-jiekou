@@ -15,15 +15,15 @@ def assert_result(expect_result, actual_result, status_code):
             for expect in expect_result:
                 for key, value in expect.items():
                     if key == "codes":
-                        print_log("状态码断言")
+                        print_log("执行状态码断言")
                         flag = codes_assert(value, status_code)
                         all_flag = all_flag + flag
                     elif key == "equals":
-                        print_log("相等断言")
+                        print_log("执行相等断言")
                         flag = equals_assert(value, actual_result)
                         all_flag = all_flag + flag
                     elif key == "contains":
-                        print_log("包含断言")
+                        print_log("执行包含断言")
                         flag = contains_assert(value, actual_result)
                         all_flag = all_flag + flag
                     else:
@@ -50,6 +50,7 @@ def codes_assert(value, status_code):
     except Exception as e:
         error_log("assert_utils模块codes_assert方法报错：%s" % str(traceback.format_exc()))
         raise e
+
 
 def equals_assert(value, actual_result):
     try:

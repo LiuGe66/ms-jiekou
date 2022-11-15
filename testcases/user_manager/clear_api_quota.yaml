@@ -1,0 +1,20 @@
+-
+  name: 重置API_quota
+  request:
+    method: post
+    url: /cgi-bin/clear_quota
+    base_url: ${read_config(base_url)}
+    params:
+      grant_type: $ddt{grant_type}
+      appid: $ddt{appid}
+      secret: $ddt{secret}
+  extract:
+    access_token: '"access_token":"(.*?)"'
+    expires_in: $..expires_in
+  validate:
+    - codes: {status_code: 200}
+#    - equals: {expires_in: 7200}
+    - contains: $ddt{errcode}
+  parameterize:
+    - [ 'name', 'appid', 'secret', 'grant_type', 'errcode' ]
+    - [ 'API配置重置 ','wxf393fadf3268a5d5','fc3d0e7c0d53005751b795f57f743554','client_credential',0 ]

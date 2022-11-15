@@ -1,7 +1,0 @@
-[2022-11-14 02:33:25,099] logger_utils.py->print_log line:20 [INFO]----------------获取鉴权码-正例接口测试开始----------------
-[2022-11-14 02:33:25,100] logger_utils.py->error_log line:15 [ERROR]requests_utils模块standard_yaml_testcase方法报错：Traceback (most recent call last):
-  File "D:\Python_project\ms-jiekou\commons\requests_util.py", line 32, in standard_yaml_testcase
-    for i, j in request_keys.items():
-                ^^^^^^^^^^^^^^^^^^
-AttributeError: 'dict_keys' object has no attribute 'items'
-
