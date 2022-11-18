@@ -1,0 +1,5 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Fri Nov 18 23:42:11 GMT+08:00 2022","Fri Nov 18 23:42:11 GMT+08:00 2022","75","testcases.user_manager","test_weixin","TestApi","","","test_get_baidu[caseinfo0]",""
+"passed","Fri Nov 18 23:42:11 GMT+08:00 2022","Fri Nov 18 23:42:11 GMT+08:00 2022","68","testcases.user_manager","test_weixin","TestApi","","","sign接口测试用例",""
+"passed","Fri Nov 18 23:42:11 GMT+08:00 2022","Fri Nov 18 23:42:11 GMT+08:00 2022","67","testcases.user_manager","test_weixin","TestApi","","","sign接口测试用例",""
+"passed","Fri Nov 18 23:42:11 GMT+08:00 2022","Fri Nov 18 23:42:11 GMT+08:00 2022","126","testcases.user_manager","test_weixin","TestApi","","","sign接口测试用例",""

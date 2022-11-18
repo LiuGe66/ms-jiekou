@@ -4,7 +4,6 @@
 # @Time : 2022/11/11 14:06
 import traceback
 import jsonpath
-
 from commons.database_utils import DataBaseUtil
 from commons.logger_utils import print_log, error_log
 
@@ -91,26 +90,6 @@ def contains_assert(value, actual_result):
         raise e
 
 
-# 数据库相等断言：
-# def database_assert(value, actual_result):
-
-# flag = 0
-# print("88888888888888888", value, actual_result)
-# for sql, key in value.items():
-#     # 判断实际结果中是否包含key
-#     print("99999999999999",key,value)
-#     if key not in actual_result:
-#         flag = flag + 1
-#         print_log("db_equals断言失败：返回的结果中没有" + str(key) + "")
-#     else:
-#         db_res = None
-#         try:
-#             db_res = DataBaseUtil().execute_sql(sql)
-#             print(db_res)
-#         except Exception as e:
-#             flag = flag + 1
-#             print_log('db_equals断言失败：SQL查询异常：{}'.format(str(traceback.format_exc())))
-# return flag
 
 def database_assert(value, actual_result):
     try:

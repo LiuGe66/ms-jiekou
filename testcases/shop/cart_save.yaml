@@ -1,0 +1,20 @@
+-
+  name: $ddt{name}
+  request:
+    method: $ddt{method}
+    base_url: http://shop-xo.hctestedu.com/index.php?s=
+    url: api/cart/save
+    params:
+      token: ${read_extract(token)}
+      application_client_type: $ddt{application_client_type}
+    json:
+        goods_id: 10
+        spec: ""
+        stock: 1
+  times: 3
+  validate:
+    - codes: {status_code: 200}
+    - contains: $ddt{assert_str}
+  parameterize:
+    - [ 'name', 'method', 'type', 'application', 'application_client_type','assert_str' ]
+    - [ '购物车-加入购物车','post','username','app','weixin','加入成功']

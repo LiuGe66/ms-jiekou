@@ -1,0 +1,29 @@
+-
+  name: $ddt{name}
+  request:
+    method: $ddt{method}
+    base_url: http://shop-xo.hctestedu.com/index.php?s=
+    url: api/user/login
+    params:
+      application: $ddt{application}
+      application_client_type: $ddt{application_client_type}
+    json:
+      accounts: $ddt{accounts}
+      pwd: $ddt{pwd}
+      type: $ddt{type}
+    headers:
+      Content-Type: application/json
+  extract:
+    token: $..token
+  times: 3
+  validate:
+    - codes: {status_code: 200}
+    - contains: $ddt{assert_str}
+  parameterize:
+    - [ 'name', 'method','accounts', 'pwd', 'type', 'application', 'application_client_type','assert_str' ]
+#    - [ '商城登录-反例-错误密码','post','liuge002','liuge888','username','app','weixin','-4']
+#    - [ '商城登录-反例-空密码','post','liuge002','','username','app','weixin','-1']
+#    - [ '商城登录-反例-账号空','post','','liuge666','username','app','weixin','-1']
+#    - [ '商城登录-反例-错误账号','post','liuge2532512','liuge666','username','app','weixin','-3']
+#    - [ '商城登录-反例-错误超长账号','post','liu9989！@#（~！++++~&*……#@%……&*）——+)((*98***&&…………%%￥￥#@！~~~e2532512','liuge666','username','app','weixin','-3']
+    - [ '商城登录-正例','post','liuge002','liuge666','username','app','weixin','登录成功']

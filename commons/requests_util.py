@@ -5,11 +5,13 @@
 import json
 import re
 import traceback
+
+import allure
 import jsonpath
 import requests
 from commons.assert_utils import assert_result
 from commons.logger_utils import print_log, error_log
-from commons.yaml_util import write_yaml, read_yaml
+from commons.yaml_util import write_yaml
 from hotloads.debug_talk import DebugTalk
 
 
@@ -159,4 +161,3 @@ class RequestUtil:
         except Exception as e:
             error_log("requests_utils模块replace_get_value方法报错：%s" % str(traceback.format_exc()))
             raise e
-

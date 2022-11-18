@@ -5,6 +5,23 @@
     base_url: http://47.107.116.139
     url: /phpwind/?b=2&c=3
     headers:
+#      sign: ${signs(testcases/user_manager/sign.yaml)}
+    params:
+      a: 1
+#      b: ${get_random(0,999)}
+    data:
+      username: admin
+      password: 123
+  times: 5
+  validate: null
+
+-
+  name:  sign接口
+  request:
+    method: post
+    base_url: http://47.107.116.139
+    url: /phpwind/?b=2&c=3
+    headers:
       sign: ${signs(testcases/user_manager/sign.yaml)}
     params:
       a: 1
@@ -12,4 +29,22 @@
     data:
       username: admin
       password: 123
+  times: 5
+  validate: null
+
+-
+  name:  sign接口
+  request:
+    method: post
+    base_url: http://47.107.116.139
+    url: /phpwind/?b=2&c=3
+    headers:
+      sign: ${signs(testcases/user_manager/sign.yaml)}
+    params:
+      a: 1
+#      b: ${get_random(0,999)}
+    data:
+      username: admin
+      password: 123
+  times: 5
   validate: null

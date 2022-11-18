@@ -5,8 +5,8 @@
 import logging
 import os
 import time
-from email import message
 import yaml
+import colorlog
 
 
 # 函数,用于日志输出
@@ -40,7 +40,9 @@ class LoggerUtils:
         if not self.logger.handlers:
             #################################信息日志#################################
             # 文件日志的名称规范
-            log_file_path = self.get_new_path() + "/logs/" + self.read_config_log("log", "log_file_name") + str(time.time()) + ".log"
+
+            format_string2 = "%Y-%m-%d %H-%M-%S"
+            log_file_path = self.get_new_path() + "/logs/" + self.read_config_log("log", "log_file_name") + str(time.strftime('%Y_%m_%d   %H_%M_%S',time.localtime(time.time()))) + ".log"
             # 2.创建一个文件日志控制控制器
             file_handler = logging.FileHandler(log_file_path, encoding="utf-8")
             # 3.设置文件日志级别

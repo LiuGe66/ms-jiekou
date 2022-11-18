@@ -3,6 +3,7 @@
 # @FileName: ddt_utils.py
 # @Time : 2022/11/11 21:26
 import json
+import re
 import traceback
 import yaml
 from commons.logger_utils import print_log, error_log
@@ -14,15 +15,18 @@ def read_case_yaml(yaml_path):
     try:
         with open(get_object_path() + "/" + yaml_path, mode="r", encoding="utf-8") as f:
             caseinfo = yaml.load(stream=f, Loader=yaml.FullLoader)
-            if len(caseinfo) >= 2:  # 表示通过复制内容实现数据驱动
-                return caseinfo
+            # str_caseinfo=str(caseinfo)
+            # times=re.search("'times': (.*?),",str_caseinfo).group(1)
+            # int_times=int(times)
+        if len(caseinfo) >= 2:  # 表示通过复制内容实现数据驱动
+            return caseinfo
+        else:
+            if "parameterize" in dict(*caseinfo).keys():
+                # 代表需要做解析
+                new_caseinfo = parameterize_ddt(*caseinfo)
+                return new_caseinfo
             else:
-                if "parameterize" in dict(*caseinfo).keys():
-                    # 代表需要做解析
-                    new_caseinfo = parameterize_ddt(*caseinfo)
-                    return new_caseinfo
-                else:
-                    return caseinfo
+                return caseinfo
     except Exception as e:
         error_log("dtt_utils模块read_case_yaml方法报错：%s" % str(traceback.format_exc()))
         raise e

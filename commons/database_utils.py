@@ -2,20 +2,27 @@
 # Author:liu_ge
 # @FileName: database_utils.py
 # @Time : 2022/11/11 19:22
-from sqlite3 import Cursor
-
+import os
 import pymysql
+import yaml
 
 
 class DataBaseUtil:
+    # 读取配置文件数据：
+    def read__database_config(self, one_key):
+        with open(os.getcwd().split("commons")[0] + "/config.yaml", mode="r", encoding="utf-8") as f:
+            result = yaml.load(stream=f, Loader=yaml.FullLoader)
+            return result[one_key]
+
     # 创建连接
     def create_conn(self):
+        conf = self.read__database_config("database_config")
         self.conn = pymysql.connect(
-            host="shop-xo.hctestedu.com",
-            port=3306,
-            database="shopxo_hctested",
-            user="api_test",
-            password="Aa9999!"
+            host=conf['host'],
+            port=conf['port'],
+            database=conf['database'],
+            user=conf['user'],
+            password=conf['password']
         )
         return self.conn
 
@@ -38,6 +45,5 @@ if __name__ == '__main__':
     re = db.execute_sql("SELECT CAST(original_price AS SIGNED) FROM sxo_cart WHERE id=97;")
     print(re)
     print(type(re))
-    a= re[0]
+    a = re[0]
     print(a)
-

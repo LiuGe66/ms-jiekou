@@ -1,0 +1,12 @@
+-
+  name: 百度
+  request:
+    method: get
+    base_url: https://www.jd.com
+    url: /
+  validate:
+    - codes: {status_code: 200}
+
+
+
+

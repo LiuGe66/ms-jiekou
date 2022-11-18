@@ -18,7 +18,7 @@ def clear_extract():
 def clear_logs():
     path = os.getcwd()
     files_count = len(os.listdir(path + "\\logs\\"))
-    num = 20
+    num = 10
     if files_count >= num:
         # 先强制删除指定目录
         shutil.rmtree(path + "\\logs\\")

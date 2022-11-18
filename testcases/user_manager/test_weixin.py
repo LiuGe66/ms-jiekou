@@ -5,22 +5,20 @@
 import allure
 import pytest
 from commons.ddt_utils import read_case_yaml
-from commons.logger_utils import print_log
 from commons.requests_util import RequestUtil
-from commons.yaml_util import write_yaml, read_yaml
 from hotloads.debug_talk import DebugTalk
 
 
 @allure.epic("微信接口项目")
 class TestApi:
 
-    @allure.severity(allure.severity_level.BLOCKER)
-    @pytest.mark.run(order=1)
-    @allure.description("这是一个获取token的用例")
-    @allure.title("获取token测试用例")
-    @pytest.mark.parametrize("caseinfo", read_case_yaml("testcases/user_manager/get_token.yaml"))
-    def test_get_token(self, caseinfo):
-        RequestUtil(DebugTalk).standard_yaml_testcase(caseinfo)
+    # @allure.severity(allure.severity_level.BLOCKER)
+    # @pytest.mark.run(order=1)
+    # @allure.description("这是一个获取token的用例")
+    # @allure.title("获取token测试用例")
+    # @pytest.mark.parametrize("caseinfo", read_case_yaml("testcases/user_manager/get_token.yaml"))
+    # def test_get_token(self, caseinfo):
+        # RequestUtil(DebugTalk).standard_yaml_testcase(caseinfo)
 
     # @allure.title("选择标签测试用例")
     # @pytest.mark.run(order=2)
@@ -64,13 +62,18 @@ class TestApi:
     # def test_rsa_login(self, caseinfo):
     #     RequestUtil(DebugTalk).standard_yaml_testcase(caseinfo)
     #
-    # @allure.title("sign接口测试用例")
-    # @pytest.mark.parametrize("caseinfo", read_case_yaml("testcases/user_manager/sign.yaml"))
-    # def test_sign(self, caseinfo):
-    #     RequestUtil(DebugTalk).standard_yaml_testcase(caseinfo)
+    @allure.title("sign接口测试用例")
+    @allure.step("sign接口step")
+    @pytest.mark.parametrize("caseinfo", read_case_yaml("testcases/user_manager/sign.yaml"))
+    def test_sign(self, caseinfo):
+        RequestUtil(DebugTalk).standard_yaml_testcase(caseinfo)
     #
 
     # @allure.title("重置API配额方法")
     # @pytest.mark.parametrize("caseinfo", read_case_yaml("testcases/user_manager/clear_api_quota.yaml"))
     # def clear_api_quota(self, caseinfo):
     #     RequestUtil(DebugTalk).standard_yaml_testcase(caseinfo)
+
+    @pytest.mark.parametrize("caseinfo", read_case_yaml("testcases/user_manager/get_baidu.yaml"))
+    def test_get_baidu(self, caseinfo):
+        RequestUtil(DebugTalk).standard_yaml_testcase(caseinfo)
