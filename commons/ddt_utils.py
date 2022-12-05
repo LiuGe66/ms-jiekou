@@ -3,10 +3,9 @@
 # @FileName: ddt_utils.py
 # @Time : 2022/11/11 21:26
 import json
-import re
 import traceback
 import yaml
-from commons.logger_utils import print_log, error_log
+from commons.logger_utils import *
 from commons.yaml_util import get_object_path
 
 
@@ -15,9 +14,6 @@ def read_case_yaml(yaml_path):
     try:
         with open(get_object_path() + "/" + yaml_path, mode="r", encoding="utf-8") as f:
             caseinfo = yaml.load(stream=f, Loader=yaml.FullLoader)
-            # str_caseinfo=str(caseinfo)
-            # times=re.search("'times': (.*?),",str_caseinfo).group(1)
-            # int_times=int(times)
         if len(caseinfo) >= 2:  # 表示通过复制内容实现数据驱动
             return caseinfo
         else:
@@ -28,7 +24,7 @@ def read_case_yaml(yaml_path):
             else:
                 return caseinfo
     except Exception as e:
-        error_log("dtt_utils模块read_case_yaml方法报错：%s" % str(traceback.format_exc()))
+        print_error_log("dtt_utils模块read_case_yaml方法报错：%s" % str(traceback.format_exc()))
         raise e
 
 
@@ -44,8 +40,8 @@ def parameterize_ddt(caseinfo):
         for param in caseinfo["parameterize"]:
             if len(param) != key_length:
                 length_success = False
-                print_log("name为：'{}'的这条数据有误，请检查。".format(param[0]))
-                error_log('数据规范发现异常：key与value的数量不对应')
+                print_info_log("name为：'{}'的这条数据有误，请检查。".format(param[0]))
+                print_error_log('数据规范发现异常：key与value的数量不对应')
                 continue
             else:
                 break
@@ -58,5 +54,5 @@ def parameterize_ddt(caseinfo):
                 new_caseinfo.append(json.loads(raw_caseinfo))
         return new_caseinfo
     except Exception as e:
-        error_log("dtt_utils模块parameterize_ddt方法报错：%s" % str(traceback.format_exc()))
+        print_error_log("dtt_utils模块parameterize_ddt方法报错：%s" % str(traceback.format_exc()))
         raise e

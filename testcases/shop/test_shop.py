@@ -16,7 +16,6 @@ class TestApi:
 
     @allure.severity(allure.severity_level.BLOCKER)
     @pytest.mark.run(order=1)
-    @allure.description("这是一个获取token的用例")
     @allure.title("商城登录测试用例")
     @pytest.mark.parametrize("caseinfo", read_case_yaml("testcases/shop/shop_login.yaml"))
     def test_shop_login(self, caseinfo):

@@ -1,5 +1,3 @@
 "Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"passed","Fri Nov 18 23:42:11 GMT+08:00 2022","Fri Nov 18 23:42:11 GMT+08:00 2022","75","testcases.user_manager","test_weixin","TestApi","","","test_get_baidu[caseinfo0]",""
-"passed","Fri Nov 18 23:42:11 GMT+08:00 2022","Fri Nov 18 23:42:11 GMT+08:00 2022","68","testcases.user_manager","test_weixin","TestApi","","","sign接口测试用例",""
-"passed","Fri Nov 18 23:42:11 GMT+08:00 2022","Fri Nov 18 23:42:11 GMT+08:00 2022","67","testcases.user_manager","test_weixin","TestApi","","","sign接口测试用例",""
-"passed","Fri Nov 18 23:42:11 GMT+08:00 2022","Fri Nov 18 23:42:11 GMT+08:00 2022","126","testcases.user_manager","test_weixin","TestApi","","","sign接口测试用例",""
+"failed","Mon Dec 05 17:51:53 GMT+08:00 2022","Mon Dec 05 17:51:54 GMT+08:00 2022","625","testcases.user_manager","test_weixin","TestApi","","","微信获取token正例","这是一个获取token的用例"
+"passed","Mon Dec 05 17:51:54 GMT+08:00 2022","Mon Dec 05 17:51:54 GMT+08:00 2022","102","testcases.user_manager","test_weixin","TestApi","","","RSA加密接口测试用例",""

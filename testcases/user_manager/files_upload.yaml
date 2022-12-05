@@ -4,10 +4,8 @@
     method: $ddt{method}
     base_url: ${read_config(base_url)}
     url: $ddt{url}
-    headers: null
     params:
       access_token: ${read_extract(access_token)}
-    json: null
     files:
       media: $ddt{media}
   validate:

@@ -5,20 +5,29 @@
 import logging
 import os
 import time
-import yaml
 import colorlog
+import yaml
 
 
 # 函数,用于日志输出
 # 错误日志
-def error_log(message):
+def print_error_log(message):
     LoggerUtils().create_log().error(message)
     raise AssertionError(message)
 
 
-def print_log(message):
+def print_info_log(message):
     LoggerUtils().create_log().info(message)
     # raise Exception(message)
+
+
+def print_debug_log(message):
+    LoggerUtils().create_log().debug(message)
+
+
+def print_warning_log(message):
+    LoggerUtils().create_log().warning(message)
+
 
 
 class LoggerUtils:
@@ -40,9 +49,7 @@ class LoggerUtils:
         if not self.logger.handlers:
             #################################信息日志#################################
             # 文件日志的名称规范
-
-            format_string2 = "%Y-%m-%d %H-%M-%S"
-            log_file_path = self.get_new_path() + "/logs/" + self.read_config_log("log", "log_file_name") + str(time.strftime('%Y_%m_%d   %H_%M_%S',time.localtime(time.time()))) + ".log"
+            log_file_path = self.get_new_path() + "/logs/" + self.read_config_log("log", "log_file_name") + str(time.strftime('%Y_%m_%d   %H-%M-%S',time.localtime(time.time()))) + ".log"
             # 2.创建一个文件日志控制控制器
             file_handler = logging.FileHandler(log_file_path, encoding="utf-8")
             # 3.设置文件日志级别
@@ -65,6 +72,20 @@ class LoggerUtils:
             self.logger.addHandler(file_handler)
 
             #################################控制台日志#################################
+            log_colors_config = {
+                'DEBUG': 'white',
+                'INFO': 'green',
+                'WARNING': 'yellow',
+                'ERROR': 'red',
+                'CRITICAL': 'bold_red'
+            }
+
+            console_formatter = colorlog.ColoredFormatter(
+                fmt='%(log_color)s[%(asctime)s.%(msecs)03d] %(filename)s -> %(funcName)s line:%(lineno)d [%(levelname)s] : %(message)s',
+                datefmt='%Y-%m-%d  %H:%M:%S',
+                log_colors=log_colors_config
+            )
+
             # 1.创建一个控制台日志控制控制器
             console_handler = logging.StreamHandler()
             # 2.设置控制台日志级别
@@ -82,7 +103,8 @@ class LoggerUtils:
             else:
                 console_handler.setLevel(logging.DEBUG)
             # 3.设置文件日志的格式
-            console_handler.setFormatter(logging.Formatter(self.read_config_log("log", "log_format")))
+            # console_handler.setFormatter(logging.Formatter(self.read_config_log("log", "log_format")))
+            console_handler.setFormatter(console_formatter)
             # 4.将文件日志控制器加入日志对象
             self.logger.addHandler(console_handler)
 

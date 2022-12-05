@@ -5,12 +5,10 @@
 import json
 import re
 import traceback
-
-import allure
 import jsonpath
 import requests
 from commons.assert_utils import assert_result
-from commons.logger_utils import print_log, error_log
+from commons.logger_utils import *
 from commons.yaml_util import write_yaml
 from hotloads.debug_talk import DebugTalk
 
@@ -27,18 +25,18 @@ class RequestUtil:
             caseinfo_keys = caseinfo.keys()
             # 在Yaml用例里必须有一级关键字name,request,validate
             if "name" in caseinfo_keys and "request" in caseinfo_keys and "validate" in caseinfo_keys:
-                print_log(f"----------------{caseinfo['name']}接口测试开始----------------")
+                print_warning_log(f"----------------{caseinfo['name']}接口测试开始----------------")
                 request_keys = caseinfo['request'].keys()
                 if 'method' in request_keys and "url" in request_keys and "base_url" in request_keys:
                     for i, j in caseinfo['request'].items():
                         if j is None:
-                            print_log(f"{i}没有value,请确认")
-                    if 'params' in caseinfo['request'].keys():
-                        for i, j in caseinfo['request']['params'].items():
-                            if j is None:
-                                print_log(f"{i}没有value,请确认")
-                    else:
-                        print_log("params参数不存在，请注意")
+                            print_info_log(f"{i}未填充，或者(反例)设计为空")
+                    # if 'params' in caseinfo['request'].keys():
+                    #     for i, j in caseinfo['request']['params'].items():
+                    #         if j is None:
+                    #             print_info_log(f"{i}没有value,请确认")
+                    # else:
+                    #     print_info_log("params参数不存在，请注意")
                     # 发送请求
                     base_url = caseinfo['request'].pop('base_url')
                     method = caseinfo['request'].pop('method')
@@ -50,7 +48,7 @@ class RequestUtil:
                     try:
                         js_result = res.json()  # 接收json响应结果
                     except Exception as e:
-                        print_log('响应不是json数据格式')
+                        print_info_log('响应不是json数据格式')
                     # 提取需要关联的值，并写入extract.yaml
                     if 'extract' in caseinfo.keys() and caseinfo['extract'] is not None:
                         for key, value in caseinfo['extract'].items():
@@ -60,7 +58,7 @@ class RequestUtil:
                                     data = {key: reg_value.group(1)}
                                     write_yaml("extract.yaml", data)
                                 else:
-                                    print_log(
+                                    print_info_log(
                                         '正则表达式{}可能有误，或者(反例)接口请求失败，未提取到中间变量'.format(value))
                             else:
                                 js_value = jsonpath.jsonpath(js_result, value)
@@ -68,54 +66,57 @@ class RequestUtil:
                                     data = {key: js_value[0]}
                                     write_yaml("extract.yaml", data)
                                 else:
-                                    print_log(f'jsonpath表达式{value}可能有误，或者(反例)接口请求失败，未提取到中间变量')
+                                    print_info_log(f'jsonpath表达式{value}可能有误，或者(反例)接口请求失败，未提取到中间变量')
                     elif 'extract' in caseinfo.keys() and caseinfo['extract'] is None:
-                        print_log("extract配置参数为空，请检查")
+                        print_info_log("extract配置参数为空，请检查")
                     # 断言：
                     expect_result = caseinfo["validate"]
                     actual_result = js_result
-                    print_log("预期结果：{}".format(expect_result))
-                    print_log("实际结果：{},status_code:{}".format(actual_result, status_code))
+                    if not js_result:
+                        actual_result = res.text
+                    print_info_log("预期结果：{}".format(expect_result))
+                    print_info_log("实际结果：{},status_code:{}".format(actual_result, status_code))
                     all_flag = assert_result(expect_result, actual_result, status_code)
                     if all_flag == 0:
-                        print_log("{} 已选断言类型全部断言成功，测试通过".format(caseinfo["name"]))
+                        print_info_log("{} 已选断言类型全部断言成功，测试通过".format(caseinfo["name"]))
                     elif all_flag == -1:
-                        print_log("无断言参数，未执行断言")
+                        print_info_log("无断言参数，未执行断言")
                     else:
-                        assert 1 == 2, print_log("{}业务断言失败".format(caseinfo["name"]))
-                    print_log(f"----------------{caseinfo['name']}接口测试结束----------------\n")
+                        assert 1 == 2, print_info_log("{}业务断言失败".format(caseinfo["name"]))
+                    print_warning_log(f"----------------{caseinfo['name']}接口测试结束----------------\n")
                 else:
-                    error_log("一级关键字request下面必须包含method,base_url,url这三个二级关键字。")
+                    print_error_log("一级关键字request下面必须包含method,base_url,url这三个二级关键字。")
+                    logging.error("一级关键字request下面必须包含method,base_url,url这三个二级关键字。")
             else:
-                error_log("在Yaml用例里必须有一级关键字name,request,validate。")
+                print_error_log("在Yaml用例里必须有一级关键字name,request,validate。")
         except Exception as e:
-            error_log("requests_utils模块standard_yaml_testcase方法报错：%s" % str(traceback.format_exc()))
+            print_error_log("requests_utils模块standard_yaml_testcase方法报错：%s" % str(traceback.format_exc()))
             raise e
 
     def send_all_request(self, method, url, base_url, **kwargs):
         try:
-            print_log('请求方式：{}'.format(method))
+            print_info_log('请求方式：{}'.format(method))
             # method统一小写
             method = str(method).lower()
             # url通过${key}取值
             url = self.replace_get_value(base_url + url)
-            print_log("请求地址：{}".format(url))
-            # headers,params,data,json通过${key}取值
+            print_info_log("请求地址：{}".format(url))
             for key, value in kwargs.items():
                 if value is None:
-                    print_log(f'{key}未填充，或者(反例)设计为空')
+                    print_info_log(f'{key}未填充，或者(反例)设计为空')
                 else:
                     if key in ["headers", "params", "data", "json"]:
                         kwargs[key] = self.replace_get_value(value)
-                        print_log("请求{}参数：{}".format(key, kwargs[key]))
+                        print_info_log("请求{}参数：{}".format(key, kwargs[key]))
                     elif key == "files":
                         for file_key, file_value in value.items():
                             value[file_key] = open(file_value, "rb")
+                            print_info_log("上传的文件是：{}".format(file_value))
             # 发送请求：
             res = RequestUtil.sess.request(method, url, **kwargs)
             return res
         except Exception as e:
-            error_log("requests_utils模块send_all_request方法报错：%s" % str(traceback.format_exc()))
+            print_error_log("requests_utils模块send_all_request方法报错：%s" % str(traceback.format_exc()))
             raise e
 
     # 封装替换取值的方法
@@ -137,7 +138,6 @@ class RequestUtil:
                         start_index = str_data.index("${")
                         end_index = str_data.index("}", start_index)
                         old_value = str_data[start_index:end_index + 1]
-                        # print(old_value)
                         # 反射：通过类的对象和方法名字符串调用方法
                         # 得到方法名
                         function_name = old_value[2:old_value.index("(")]
@@ -159,5 +159,5 @@ class RequestUtil:
                     data = data_type(str_data)
                 return data  # 返回值
         except Exception as e:
-            error_log("requests_utils模块replace_get_value方法报错：%s" % str(traceback.format_exc()))
+            print_error_log("requests_utils模块replace_get_value方法报错：%s" % str(traceback.format_exc()))
             raise e

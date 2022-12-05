@@ -1,11 +1,16 @@
 -
-  name: 百度
+  name: 百度首页接口-正例
+  allure-attr:
+    feature: test_weixin
+    story: 百度
+    title:
   request:
     method: get
-    base_url: https://www.jd.com
+    base_url: https://www.baidu.com
     url: /
   validate:
     - codes: {status_code: 200}
+    - contains: hao123
 
 
 

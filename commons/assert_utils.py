@@ -5,7 +5,7 @@
 import traceback
 import jsonpath
 from commons.database_utils import DataBaseUtil
-from commons.logger_utils import print_log, error_log
+from commons.logger_utils import *
 
 
 def assert_result(expect_result, actual_result, status_code):
@@ -27,13 +27,13 @@ def assert_result(expect_result, actual_result, status_code):
                         flag = database_assert(value, actual_result)
                         all_flag = all_flag + flag
                     else:
-                        print_log("此框架不支持{}断言方式".format(key))
+                        print_info_log("此框架不支持{}断言方式".format(key))
         else:
             all_flag = -1  # 无断言设置标记位
         return all_flag
 
     except Exception as e:
-        error_log("assert_utils模块assert_result方法报错：%s" % str(traceback.format_exc()))
+        print_error_log("assert_utils模块assert_result方法报错：%s" % str(traceback.format_exc()))
         raise e
 
 
@@ -45,12 +45,12 @@ def codes_assert(value, status_code):
             if assert_key == "status_code":
                 if assert_value != status_code:
                     flag = flag + 1
-                    print_log("codes断言失败：" + str(assert_key) + "不等于" + str(assert_value) + "")
+                    print_info_log("codes断言失败：" + str(assert_key) + "不等于" + str(assert_value) + "")
                 else:
-                    print_log("codes断言成功")
+                    print_info_log("codes断言成功")
         return flag
     except Exception as e:
-        error_log("assert_utils模块codes_assert方法报错：%s" % str(traceback.format_exc()))
+        print_error_log("assert_utils模块codes_assert方法报错：%s" % str(traceback.format_exc()))
         raise e
 
 
@@ -62,16 +62,16 @@ def equals_assert(value, actual_result):
             if lists:
                 if assert_value not in lists:
                     flag = flag + 1
-                    print_log("equals断言失败：" + str(assert_key) + "不等于" + str(assert_value) + "")
+                    print_info_log("equals断言失败：" + str(assert_key) + "不等于" + str(assert_value) + "")
                 else:
-                    print_log('equals断言成功')
+                    print_info_log('equals断言成功')
             else:
                 flag = flag + 1
-                print_log("equals断言失败：返回的结果中没有" + str(assert_key) + "")
+                print_info_log("equals断言失败：返回的结果中没有" + str(assert_key) + "")
         return flag
 
     except Exception as e:
-        error_log("assert_utils模块equals_assert方法报错：%s" % str(traceback.format_exc()))
+        print_error_log("assert_utils模块equals_assert方法报错：%s" % str(traceback.format_exc()))
         raise e
 
 
@@ -81,14 +81,13 @@ def contains_assert(value, actual_result):
         flag = 0
         if str(value) not in str(actual_result):
             flag = flag + 1
-            print_log("contains断言失败：返回的结果中没有" + str(value) + "")
+            print_info_log("contains断言失败：返回的结果中没有" + str(value) + "")
         else:
-            print_log("contains断言成功")
+            print_info_log("contains断言成功")
         return flag
     except Exception as e:
-        error_log("assert_utils模块contains_assert方法报错：%s" % str(traceback.format_exc()))
+        print_error_log("assert_utils模块contains_assert方法报错：%s" % str(traceback.format_exc()))
         raise e
-
 
 
 def database_assert(value, actual_result):
@@ -101,18 +100,18 @@ def database_assert(value, actual_result):
                 int_db_res = db_res[0]
                 if lists:
                     if int_db_res == lists[0]:
-                        print_log('db_equals断言成功')
+                        print_info_log('db_equals断言成功')
                     else:
                         flag = flag + 1
-                        print_log("db_equals断言失败：" + str(int_db_res) + "不等于" + "实际结果中"+str(assert_value) + "字段的值")
+                        print_info_log("db_equals断言失败：" + str(int_db_res) + "不等于" + "实际结果中"+str(assert_value) + "字段的值")
                 else:
                     flag = flag + 1
-                    print_log("db_equals断言失败：返回的结果中没有" + str(assert_value) + "")
+                    print_info_log("db_equals断言失败：返回的结果中没有" + str(assert_value) + "")
             except Exception as e:
-                error_log("SQL查询语句可能有错，或者查询结果为空，请检查")
+                print_error_log("SQL查询语句可能有错，或者查询结果为空，请检查")
                 raise e
         return flag
 
     except Exception as e:
-        error_log("assert_utils模块db_equals方法报错：%s" % str(traceback.format_exc()))
+        print_error_log("assert_utils模块db_equals方法报错：%s" % str(traceback.format_exc()))
         raise e

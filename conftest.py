@@ -5,7 +5,7 @@
 import os
 import shutil
 import pytest
-from commons.logger_utils import print_log
+from commons.logger_utils import *
 from commons.yaml_util import clear_yaml
 
 
@@ -24,7 +24,7 @@ def clear_logs():
         shutil.rmtree(path + "\\logs\\")
         # 再新建一个同名目录
         os.mkdir(path + "\\logs\\")
-        print_log("log数量超过{}条，日志目录已清空".format(num))
+        print_info_log("log数量超过{}条，日志目录已清空".format(num))
 
 
 if __name__ == '__main__':
